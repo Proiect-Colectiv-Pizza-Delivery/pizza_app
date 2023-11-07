@@ -4,41 +4,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94a2d74d-2f4d-4c29-843c-069c5bc36440" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/lib/common/theme/colors.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/theme/theme_attributes.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/theme/theme_builder.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/validator/validator.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/widgets/default_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/widgets/rounded_container.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/common/widgets/text_input_field.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/domain/ingredients.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/domain/pizza.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/repository/discount_code_repository_impl.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/repository/discount_code_repository_local.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/data/repository/pizza_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discount_management_screens/discount_form_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discount_management_screens/discount_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/home/home_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/home/pizza_tile.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="94a2d74d-2f4d-4c29-843c-069c5bc36440" name="Changes" comment="added podfiles for ios">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/theme/theme_attributes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/theme/theme_attributes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/discount_code_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/discount_code_repository_local.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discount_management_screens/discount_bloc/pizza_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discount_management_screens/discount_form_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discount_management_screens/discount_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/home/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/home/pizza_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/home/admin_pizza_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/Flutter-Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/Flutter-Debug.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/Flutter-Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/Flutter-Release.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pizza_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pizza_app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,22 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/mihaigheorghe/StudioProjects/pizza_app/lib",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mihaigheorghe/StudioProjects/pizza_app/lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/features/admin/management" />
     </key>
   </component>
   <component name="RunManager">
@@ -111,7 +93,21 @@
       <option name="project" value="LOCAL" />
       <updated>1698950341453</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added working app, adjusted the app to work with domain pizza and ingredients. Working delete functionality and read for pizzas">
+      <created>1698957624370</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698957624370</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added podfiles for ios">
+      <created>1698957649327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698957649327</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,7 +123,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="added working app, adjusted the app to work with domain pizza and ingredients. Working delete functionality and read for pizzas" />
+    <MESSAGE value="added podfiles for ios" />
+    <option name="LAST_COMMIT_MESSAGE" value="added podfiles for ios" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

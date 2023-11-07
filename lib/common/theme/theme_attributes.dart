@@ -10,7 +10,7 @@ class ThemeAttributes {
   get textTheme {
     var color = AppColors.secondary;
     var colorBlack = AppColors.black;
-    return GoogleFonts.latoTextTheme(
+    return GoogleFonts.robotoTextTheme(
       TextTheme(
         displayLarge: TextStyle(
           fontSize: 57,

@@ -1,8 +1,7 @@
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
-import 'package:pizza_app/discount_management_screens/discount_bloc/pizza_bloc.dart';
-import 'package:pizza_app/discount_management_screens/discount_form_screen.dart';
-import 'package:pizza_app/home/pizza_tile.dart';
+import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/home/admin_pizza_tile.dart';
 import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

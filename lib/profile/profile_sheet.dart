@@ -3,9 +3,9 @@ import 'package:pizza_app/common/widgets/default_button.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/common/theme/colors.dart';
-import 'package:pizza_app/discount_management_screens/discount_bloc/pizza_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
 
 class ProfileSheet extends StatefulWidget {
   const ProfileSheet({super.key});
@@ -91,13 +91,8 @@ class _ProfileSheetState extends State<ProfileSheet> {
                     ),
                   ),
                   const Spacer(),
-                  DefaultButton(
+                  const DefaultButton(
                     text: "Save",
-                    onPressed: enableButton
-                        ? () => BlocProvider.of<PizzaBloc>(context)
-                            .add(UpdateUsername(_controller.text))
-                        : null,
-                    isLoading: state is PizzaLoading,
                   ),
                 ],
               ),

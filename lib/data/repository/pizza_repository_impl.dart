@@ -32,17 +32,17 @@ class PizzaRepositoryImpl extends PizzaRepository {
   }
 
   @override
-  Future<void> deletePizza(Pizza discountCode) async {
+  Future<void> deletePizza(Pizza pizza) async {
     await Future.delayed(const Duration(seconds: 1));
-    _pizzas.remove(discountCode);
+    _pizzas.remove(pizza);
   }
 
   @override
-  Future<Pizza?> getPizza(String discountId) async {
+  Future<Pizza?> getPizza(String pizzaId) async {
     await Future.delayed(const Duration(seconds: 1));
     try {
       return _pizzas
-          .firstWhere((element) => element.id.toString() == discountId);
+          .firstWhere((element) => element.id.toString() == pizzaId);
     } on StateError {
       return null;
     }
@@ -55,11 +55,11 @@ class PizzaRepositoryImpl extends PizzaRepository {
   }
 
   @override
-  Future<Pizza?> updatePizza(Pizza discountCode) async {
+  Future<Pizza?> updatePizza(Pizza pizza) async {
     await Future.delayed(const Duration(seconds: 1));
     for (int i = 0; i < _pizzas.length; i++) {
-      if (_pizzas[i].id == discountCode.id) {
-        _pizzas[i] = discountCode;
+      if (_pizzas[i].id == pizza.id) {
+        _pizzas[i] = pizza;
         return _pizzas[i];
       }
     }
