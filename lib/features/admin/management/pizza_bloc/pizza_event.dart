@@ -14,7 +14,7 @@ class FetchPizzas extends PizzaEvent {
 class AddPizza extends PizzaEvent {
   final String price;
   final String name;
-  final List<Ingredients> ingredients;
+  final List<Ingredient> ingredients;
   final bool available;
 
   const AddPizza(
@@ -40,7 +40,7 @@ class UpdatePizza extends PizzaEvent {
   final String price;
   final String pizzaId;
   final String name;
-  final List<Ingredients> ingredients;
+  final List<Ingredient> ingredients;
   final bool available;
 
   const UpdatePizza(

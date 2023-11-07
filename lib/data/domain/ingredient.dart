@@ -1,23 +1,23 @@
 import 'package:equatable/equatable.dart';
 
-class Ingredients extends Equatable {
+class Ingredient extends Equatable {
   final int id;
   final String name;
   final List<String> allergens;
   final int quantity;
 
-  const Ingredients(
+  const Ingredient(
       {required this.id,
         required this.name,
         required this.allergens,
         required this.quantity
       });
 
-  static List<Ingredients> getPopulation() {
-    List<Ingredients> ingredients = [];
+  static List<Ingredient> getPopulation() {
+    List<Ingredient> ingredients = [];
 
     for (int i = 1; i <= 10; i++) {
-      Ingredients ingredient = Ingredients(
+      Ingredient ingredient = Ingredient(
         id: i,
         name: 'ingredient$i',
         allergens: ['allergen $i', 'allergen ${i+1}','allergen ${i+2}', ],
@@ -37,8 +37,8 @@ class Ingredients extends Equatable {
     };
   }
 
-  factory Ingredients.fromMap(Map<String, dynamic> map) {
-    return Ingredients(
+  factory Ingredient.fromMap(Map<String, dynamic> map) {
+    return Ingredient(
       id: map['id'],
       name: map['name'].toString(),
       quantity: map['description'],

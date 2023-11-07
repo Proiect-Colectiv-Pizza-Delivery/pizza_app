@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:pizza_app/data/domain/ingredients.dart';
+import 'package:pizza_app/data/domain/ingredient.dart';
 
 class Pizza extends Equatable {
   final int id;
   final int price;
   final String name;
-  final List<Ingredients> ingredients;
+  final List<Ingredient> ingredients;
   final bool available;
 
   const Pizza({
@@ -19,7 +19,7 @@ class Pizza extends Equatable {
 
   static List<Pizza> getPopulation() {
     List<Pizza> pizzas = [];
-    List<Ingredients> ingredients = Ingredients.getPopulation();
+    List<Ingredient> ingredients = Ingredient.getPopulation();
 
     for (int i = 0; i <= 5; i++) {
       Pizza pizza = Pizza(

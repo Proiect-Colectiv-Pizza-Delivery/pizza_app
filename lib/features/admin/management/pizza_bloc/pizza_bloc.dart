@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:pizza_app/data/domain/ingredients.dart';
+import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/data/domain/pizza_create_request.dart';
 import 'package:pizza_app/data/repository/pizza_repository.dart';

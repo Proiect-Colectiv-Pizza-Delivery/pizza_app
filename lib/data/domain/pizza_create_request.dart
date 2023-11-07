@@ -1,9 +1,9 @@
-import 'package:pizza_app/data/domain/ingredients.dart';
+import 'package:pizza_app/data/domain/ingredient.dart';
 
 class PizzaCreateRequest {
   final int price;
   final String name;
-  final List<Ingredients> ingredients;
+  final List<Ingredient> ingredients;
   final bool available;
 
   PizzaCreateRequest(

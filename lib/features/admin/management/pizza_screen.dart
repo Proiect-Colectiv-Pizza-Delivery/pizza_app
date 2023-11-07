@@ -4,6 +4,8 @@ import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app/features/admin/management/ingredient_selection_card.dart';
+import 'package:pizza_app/features/admin/management/pizza_form.dart';
 import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
 
 class PizzaScreen extends StatelessWidget {
@@ -23,16 +25,19 @@ class PizzaScreen extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Spacer(),
                 Text(
                   pizza.name,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: GestureDetector(
-                    onTap: () => _showPizzaInfo(context),
-                    child: const Icon(Icons.info),
-                  ),
+                const Spacer(),
+                Text(
+                  pizza.price.toString(),
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                GestureDetector(
+                  onTap: () => _showPizzaInfo(context),
+                  child: const Icon(Icons.attach_money_rounded),
                 ),
               ],
             ),
@@ -42,40 +47,29 @@ class PizzaScreen extends StatelessWidget {
             ),
           ),
           body: Padding(
-            padding:
-                const EdgeInsets.only(left: 32, right: 32, bottom: 64, top: 32),
+            padding: const EdgeInsets.all(32),
             child: Column(
               children: [
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _section(context, Icons.language, pizza.ingredients.toString()),
-                        const Divider(
-                          endIndent: 1,
-                          indent: 1,
-                          thickness: 1,
-                        ),
-                        _section(
-                            context, Icons.category, pizza.price.toString()),
-                        const Divider(
-                          endIndent: 1,
-                          indent: 1,
-                          thickness: 1,
-                        ),
-                        _section(context, Icons.person, pizza.available.toString()),
-                        const Divider(
-                          endIndent: 1,
-                          indent: 1,
-                          thickness: 1,
-                        ),
-                      ],
+                  child: ListView.builder(
+                    itemCount: pizza.ingredients.length,
+                    itemBuilder: (context, index) => IngredientSelectionCard(
+                      ingredient: pizza.ingredients[index],
+                      alwaysSelected: true,
                     ),
                   ),
                 ),
-                DefaultButton(
-                  text: "Update",
-                  onPressed: () => Navigator.of(context).pop()
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: DefaultButton(
+                    text: "Update",
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const PizzaForm(type: FormType.update),
+                      ),
+                    ),
+                  ),
                 ),
                 DefaultButton(
                   text: "Delete",
@@ -92,12 +86,11 @@ class PizzaScreen extends StatelessWidget {
     );
   }
 
-  Widget _section(BuildContext context, IconData icon, String text) {
+  Widget _section(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
-          Icon(icon),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
