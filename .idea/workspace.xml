@@ -1,36 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            </state>
-          </provider>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="94a2d74d-2f4d-4c29-843c-069c5bc36440" name="Changes" comment="refactored code">
+      <change afterPath="$PROJECT_DIR$/assets/checked_radio_box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/empty_radio_box.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/home_screen_assistent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/home_screen_trophy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/domain/ingredients.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/ingredient.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/domain/pizza.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/pizza.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2XdBgniszAS5Z7GJaSuHPf2b0Y7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "/Users/mihaigheorghe/StudioProjects/pizza_app/assets",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/lib/features/admin/management" />
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/features/admin/management" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="94a2d74d-2f4d-4c29-843c-069c5bc36440" name="Changes" comment="" />
+      <created>1698949194357</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698949194357</updated>
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1698949464306</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698949464306</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <created>1698950341453</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698950341453</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added working app, adjusted the app to work with domain pizza and ingredients. Working delete functionality and read for pizzas">
+      <created>1698957624370</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698957624370</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added podfiles for ios">
+      <created>1698957649327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698957649327</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactored code">
+      <created>1699371367287</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699371367287</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
         </entry>
-      </file>
-    </leaf>
+      </map>
+    </option>
   </component>
-  <component name="ToolWindowManager">
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-    </layout>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <MESSAGE value="added working app, adjusted the app to work with domain pizza and ingredients. Working delete functionality and read for pizzas" />
+    <MESSAGE value="added podfiles for ios" />
+    <MESSAGE value="refactored code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored code" />
   </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <option name="show-excluded-files" value="false" />
-      </pane>
-    </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="dart.analysis.tool.window.force.activate" value="true" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="dart-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
