@@ -8,10 +8,9 @@ class Ingredient extends Equatable {
 
   const Ingredient(
       {required this.id,
-        required this.name,
-        required this.allergens,
-        required this.quantity
-      });
+      required this.name,
+      required this.allergens,
+      required this.quantity});
 
   static List<Ingredient> getPopulation() {
     List<Ingredient> ingredients = [];
@@ -20,7 +19,11 @@ class Ingredient extends Equatable {
       Ingredient ingredient = Ingredient(
         id: i,
         name: 'ingredient$i',
-        allergens: ['allergen $i', 'allergen ${i+1}','allergen ${i+2}', ],
+        allergens: [
+          'allergen $i',
+          'allergen ${i + 1}',
+          'allergen ${i + 2}',
+        ],
         quantity: i * 5,
       );
 
@@ -46,7 +49,15 @@ class Ingredient extends Equatable {
     );
   }
 
+  String allergensString() {
+    var string = "";
+    for (var i in allergens) {
+      string += "$i, ";
+    }
+
+    return string.substring(0, string.length - 2);
+  }
+
   @override
-  List<Object?> get props =>
-      [id, name, allergens, quantity];
+  List<Object?> get props => [id, name, allergens, quantity];
 }

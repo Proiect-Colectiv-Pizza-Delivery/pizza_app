@@ -5,7 +5,7 @@ import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class ProfileSheet extends StatefulWidget {
   const ProfileSheet({super.key});

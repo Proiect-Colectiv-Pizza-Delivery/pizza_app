@@ -6,7 +6,7 @@ import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
-import 'package:pizza_app/features/admin/management/ingredient_selection_card.dart';
+import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_card.dart';
 
 class PizzaForm extends StatefulWidget {
   final FormType type;
@@ -76,10 +76,10 @@ enum FormType {
   add;
 
   String getPageTitle() {
-    switch(this){
-      case(update):
+    switch (this) {
+      case (update):
         return "Update Pizza";
-      case(add):
+      case (add):
         return "Create a new pizza";
     }
   }

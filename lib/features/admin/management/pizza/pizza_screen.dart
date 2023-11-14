@@ -4,9 +4,9 @@ import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_app/features/admin/management/ingredient_selection_card.dart';
-import 'package:pizza_app/features/admin/management/pizza_form.dart';
-import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_card.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_form.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class PizzaScreen extends StatelessWidget {
   final Pizza pizza;
