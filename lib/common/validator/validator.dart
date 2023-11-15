@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class Validator {
   static String? validateEmpty(String? s) {
     if (s == null || s.isEmpty) {
@@ -7,6 +5,7 @@ class Validator {
     }
     return null;
   }
+
   static String? validateDate(String? s) {
     if (s == null || s.isEmpty) {
       return "* Required";
@@ -15,7 +14,7 @@ class Validator {
       return "Exp Date must be of format yyyy-MM-dd";
     }
 
-    if(DateTime.tryParse(s) == null){
+    if (DateTime.tryParse(s) == null) {
       return "Please enter a valid date";
     }
     return null;

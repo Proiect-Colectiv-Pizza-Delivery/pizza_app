@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:intl/intl.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 
 class Pizza extends Equatable {
@@ -53,9 +52,9 @@ class Pizza extends Equatable {
     );
   }
 
-  String ingredientsString(){
+  String ingredientsString() {
     var string = "";
-    for(var i in ingredients){
+    for (var i in ingredients) {
       string += "${i.name}, ";
     }
 
@@ -63,6 +62,5 @@ class Pizza extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [id, name, price, ingredients, available];
+  List<Object?> get props => [id, name, price, ingredients, available];
 }

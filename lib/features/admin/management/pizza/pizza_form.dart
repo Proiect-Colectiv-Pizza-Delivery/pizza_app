@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
