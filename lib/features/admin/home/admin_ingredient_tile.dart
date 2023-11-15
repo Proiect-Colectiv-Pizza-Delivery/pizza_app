@@ -1,6 +1,7 @@
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_screen.dart';
 
 class IngredientTile extends StatelessWidget {
   final Ingredient ingredient;
@@ -9,11 +10,11 @@ class IngredientTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Navigator.of(context).push(
-      //   MaterialPageRoute(
-      //     builder: (context) => PizzaScreen(pizza: pizza),
-      //   ),
-      // ),
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => IngredientScreen(ingredient: ingredient),
+        ),
+      ),
       child: Stack(
         children: [
           Container(

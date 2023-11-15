@@ -58,6 +58,14 @@ class Ingredient extends Equatable {
     return string.substring(0, string.length - 2);
   }
 
+  static List<String> getAllergens() {
+    List<String> allergens = [];
+    for (var i = 0; i < 20; i++) {
+      allergens.add("allergen $i");
+    }
+    return allergens;
+  }
+
   @override
   List<Object?> get props => [id, name, allergens, quantity];
 }

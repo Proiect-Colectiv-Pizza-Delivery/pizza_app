@@ -14,6 +14,7 @@ class IngredientBloc extends Bloc<IngredientEvent, IngredientState> {
   IngredientBloc(this._ingredientRepository)
       : super(const IngredientInitial(username: "", ingredients: [])) {
     on<FetchIngredients>(_onFetchIngredients);
+    on<DeleteIngredient>(_onDeleteIngredient);
   }
 
   FutureOr<void> _onFetchIngredients(
@@ -21,6 +22,17 @@ class IngredientBloc extends Bloc<IngredientEvent, IngredientState> {
     emit(IngredientLoading(
         username: state.username, ingredients: state.ingredients));
     await _ingredientRepository.databaseInitialized.future;
+
+    var newList = await _ingredientRepository.getIngredients();
+
+    emit(IngredientLoaded(username: state.username, ingredients: newList));
+  }
+
+  Future<FutureOr<void>> _onDeleteIngredient(
+      DeleteIngredient event, Emitter<IngredientState> emit) async {
+    emit(IngredientLoading(
+        username: state.username, ingredients: state.ingredients));
+    await _ingredientRepository.deleteIngredient(event.ingredient);
 
     var newList = await _ingredientRepository.getIngredients();
 
