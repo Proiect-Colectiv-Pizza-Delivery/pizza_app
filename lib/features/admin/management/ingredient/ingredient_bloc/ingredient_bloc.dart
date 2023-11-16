@@ -58,9 +58,11 @@ class IngredientBloc extends Bloc<IngredientEvent, IngredientState> {
 
   FutureOr<void> _onUpdateIngredient(
       UpdateIngredient event, Emitter<IngredientState> emit) async {
+    emit(IngredientLoading(ingredients: state.ingredients));
+
     await _ingredientRepository.databaseInitialized.future;
 
-    _ingredientRepository.updateIngredient(Ingredient(
+    await _ingredientRepository.updateIngredient(Ingredient(
         id: event.ingredientId,
         name: event.name,
         allergens: event.allergens,

@@ -20,7 +20,7 @@ class IngredientForm extends StatefulWidget {
 
 class _IngredientFormState extends State<IngredientForm> {
   List<String> allAllergens = Ingredient.getAllergens();
-  List<String> allergens = [];
+  late List<String> allergens;
   bool isButtonEnabled = false;
 
   final TextEditingController _nameController = TextEditingController();
