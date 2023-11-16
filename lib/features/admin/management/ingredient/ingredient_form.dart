@@ -8,7 +8,6 @@ import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/features/admin/management/ingredient/allergen_selection_card.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
-import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class IngredientForm extends StatefulWidget {
   final FormType type;
@@ -33,16 +32,18 @@ class _IngredientFormState extends State<IngredientForm> {
     if (widget.ingredient != null) {
       allergens = widget.ingredient!.allergens;
       _nameController.text = widget.ingredient!.name;
+      _quantityController.text = widget.ingredient!.quantity.toString();
     } else {
       allAllergens = [];
     }
+    isButtonEnabled = _validateForm();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<IngredientBloc, IngredientState>(
         listenWhen: (prev, current) =>
-            prev is PizzaLoading && current is PizzaLoaded,
+            prev is IngredientLoading && current is IngredientLoaded,
         listener: (context, state) => Navigator.of(context).pop(),
         builder: (context, state) => Scaffold(
             appBar: AppBar(
@@ -74,10 +75,13 @@ class _IngredientFormState extends State<IngredientForm> {
           validator: Validator.validateEmpty,
           labelText: "Ingredient Name",
         ),
-        TextInputField(
-          controller: _quantityController,
-          validator: Validator.,
-        )
+        Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: TextInputField(
+              controller: _quantityController,
+              validator: Validator.validatePrice,
+              labelText: "Quantity",
+            ))
       ]),
     );
   }
@@ -91,6 +95,7 @@ class _IngredientFormState extends State<IngredientForm> {
                 style: Theme.of(context).textTheme.titleMedium)),
         Expanded(
             child: ListView.builder(
+                itemCount: allAllergens.length,
                 itemBuilder: (context, index) => AllergenSelectionCard(
                       allergen: allAllergens[index],
                       isSelected: allergens.contains(allAllergens[index]),
@@ -113,12 +118,13 @@ class _IngredientFormState extends State<IngredientForm> {
         child: DefaultButton(
           text: widget.type.getButtonLabel(),
           onPressed: isButtonEnabled ? _onDonePressed : null,
-          isLoading: state is PizzaLoading,
+          isLoading: state is IngredientLoading,
         ));
   }
 
   bool _validateForm() {
-    return Validator.validateEmpty(_nameController.text) == null;
+    return Validator.validateEmpty(_nameController.text) == null &&
+        Validator.validatePrice(_quantityController.text) == null;
   }
 
   void _onDonePressed() {
@@ -126,14 +132,14 @@ class _IngredientFormState extends State<IngredientForm> {
       case (FormType.add):
         BlocProvider.of<IngredientBloc>(context).add(AddIngredient(
             name: _nameController.text,
-            quantity: quantity,
+            quantity: int.parse(_quantityController.text),
             allergens: allergens));
       case (FormType.update):
         BlocProvider.of<IngredientBloc>(context).add(UpdateIngredient(
             ingredientId: widget.ingredient!.id,
             name: _nameController.text,
             allergens: allergens,
-            quantity: quantity));
+            quantity: int.parse(_quantityController.text)));
     }
   }
 }
