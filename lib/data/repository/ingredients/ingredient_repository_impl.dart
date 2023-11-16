@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/ingredient_create_request.dart';
-import 'package:pizza_app/data/repository/ingredient_repository.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
 
 class IngredientRepositoryImpl extends IngredientRepository {
   late List<Ingredient> _ingredients;

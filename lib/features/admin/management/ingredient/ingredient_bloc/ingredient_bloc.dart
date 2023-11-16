@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
-import 'package:pizza_app/data/repository/ingredient_repository.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
 
 part 'ingredient_event.dart';
 part 'ingredient_state.dart';
