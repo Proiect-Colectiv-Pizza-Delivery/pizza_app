@@ -19,6 +19,22 @@ class Validator {
     return null;
   }
 
+  static String? validatePositiveInt(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    try {
+      int res = int.parse(s);
+      if (res < 0) {
+        return "Integer must be greater than 0";
+      }
+    } catch (e) {
+      return "Must be an integer";
+    }
+
+    return null;
+  }
+
   static String? validateDate(String? s) {
     if (s == null || s.isEmpty) {
       return "* Required";

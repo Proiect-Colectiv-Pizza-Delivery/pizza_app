@@ -1,11 +1,28 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_screen.dart';
+import 'package:input_quantity/input_quantity.dart';
 
-class IngredientTile extends StatelessWidget {
+class IngredientTile extends StatefulWidget {
   final Ingredient ingredient;
   const IngredientTile({super.key, required this.ingredient});
+
+  @override
+  State<IngredientTile> createState() => _IngredientTileState();
+}
+
+class _IngredientTileState extends State<IngredientTile> {
+  int currentQuantity = 0;
+  late final Ingredient ingredient;
+
+  @override
+  void initState() {
+    super.initState();
+    ingredient = widget.ingredient;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +54,49 @@ class IngredientTile extends StatelessWidget {
                               maxLines: 1,
                             ),
                           ),
-                          const Icon(Icons.arrow_forward_ios_rounded)
                         ],
                       ),
                       _subtitle(context, ingredient.allergensString()),
                     ],
                   ),
-                )
+                ),
+                Expanded(child: _quantityChanger()),
+                const Icon(Icons.arrow_forward_ios_rounded)
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _quantityChanger() {
+    return Column(
+      children: [
+        Text("Quantity: ${ingredient.quantity}"),
+        InputQty.int(
+          minVal: 0,
+          steps: 1,
+          initVal: 0,
+          onQtyChanged: (val) {
+            currentQuantity = val;
+          },
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: TextButton(
+                  onPressed: () => {_changeQuantity(-currentQuantity)},
+                  child: const Text("Remove")),
+            ),
+            Expanded(
+              child: TextButton(
+                  onPressed: () => {_changeQuantity(currentQuantity)},
+                  child: const Text("Add")),
+            )
+          ],
+        )
+      ],
     );
   }
 
@@ -62,5 +110,13 @@ class IngredientTile extends StatelessWidget {
       ),
       maxLines: 3,
     );
+  }
+
+  void _changeQuantity(int quantity) {
+    BlocProvider.of<IngredientBloc>(context).add(UpdateIngredient(
+        ingredientId: ingredient.id,
+        name: ingredient.name,
+        allergens: ingredient.allergens,
+        quantity: ingredient.quantity + quantity));
   }
 }

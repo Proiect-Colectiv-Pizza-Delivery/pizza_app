@@ -23,25 +23,19 @@ class IngredientScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primary,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(),
-                Text(
-                  ingredient.name,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Spacer(),
-                // Text(
-                //   pizza.price.toString(),
-                //   style: Theme.of(context).textTheme.titleLarge,
-                // ),
-                GestureDetector(
-                  onTap: () => _showPizzaInfo(context),
-                  child: const Icon(Icons.attach_money_rounded),
-                ),
-              ],
-            ),
+            title: GestureDetector(
+                onTap: () => _showIngredientInfo(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    Text(
+                      ingredient.name,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const Spacer(),
+                  ],
+                )),
             leading: GestureDetector(
               onTap: () => Navigator.of(context).pop(),
               child: const Icon(Icons.arrow_back_ios_new),
@@ -51,6 +45,10 @@ class IngredientScreen extends StatelessWidget {
             padding: const EdgeInsets.all(32),
             child: Column(
               children: [
+                Text(
+                  "Quantity: ${ingredient.quantity}",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: ingredient.allergens.length,
@@ -89,40 +87,18 @@ class IngredientScreen extends StatelessWidget {
     );
   }
 
-  Widget _section(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        children: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  text,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showPizzaInfo(BuildContext context) {
+  void _showIngredientInfo(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: AppColors.transparent,
         useSafeArea: true,
         isScrollControlled: true,
         context: context,
         builder: (_) {
-          return draggablePizzaInfo();
+          return draggableIngredientInfo();
         });
   }
 
-  Widget draggablePizzaInfo() {
+  Widget draggableIngredientInfo() {
     return DraggableScrollableSheet(
       initialChildSize: 0.35,
       minChildSize: 0.3,

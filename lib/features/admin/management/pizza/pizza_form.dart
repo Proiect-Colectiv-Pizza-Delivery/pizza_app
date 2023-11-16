@@ -85,7 +85,7 @@ class _PizzaFormState extends State<PizzaForm> {
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextInputField(
               controller: _priceController,
-              validator: Validator.validatePrice,
+              validator: Validator.validatePositiveInt,
               labelText: "Price",
               keyboardType: TextInputType.number,
             ),
@@ -141,7 +141,7 @@ class _PizzaFormState extends State<PizzaForm> {
 
   bool _validateForm() {
     return Validator.validateEmpty(_nameController.text) == null &&
-        Validator.validatePrice(_priceController.text) == null &&
+        Validator.validatePositiveInt(_priceController.text) == null &&
         ingredients.isNotEmpty;
   }
 
