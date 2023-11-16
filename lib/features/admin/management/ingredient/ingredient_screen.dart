@@ -56,7 +56,7 @@ class IngredientScreen extends StatelessWidget {
                     itemCount: ingredient.allergens.length,
                     itemBuilder: (context, index) => AllergenSelectionCard(
                       allergen: ingredient.allergens[index],
-                      alwaysSelected: true,
+                      isSelected: true,
                     ),
                   ),
                 ),
@@ -66,8 +66,10 @@ class IngredientScreen extends StatelessWidget {
                     text: "Update",
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const IngredientForm(type: FormType.update),
+                        builder: (context) => IngredientForm(
+                          type: FormType.update,
+                          ingredient: ingredient,
+                        ),
                       ),
                     ),
                   ),

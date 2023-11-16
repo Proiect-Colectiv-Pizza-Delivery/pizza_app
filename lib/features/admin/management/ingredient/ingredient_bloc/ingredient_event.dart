@@ -19,3 +19,31 @@ class DeleteIngredient extends IngredientEvent {
   @override
   List<Object> get props => [ingredient];
 }
+
+class AddIngredient extends IngredientEvent {
+  final String name;
+  final int quantity;
+  final List<String> allergens;
+
+  const AddIngredient(
+      {required this.name, required this.quantity, required this.allergens});
+
+  @override
+  List<Object> get props => [name, quantity, allergens];
+}
+
+class UpdateIngredient extends IngredientEvent {
+  final int ingredientId;
+  final String name;
+  final List<String> allergens;
+  final int quantity;
+
+  const UpdateIngredient(
+      {required this.ingredientId,
+      required this.name,
+      required this.allergens,
+      required this.quantity});
+
+  @override
+  List<Object> get props => [ingredientId, name, allergens, quantity];
+}

@@ -22,7 +22,7 @@ class PizzaRepositoryImpl extends PizzaRepository {
         name: request.name,
       price: request.price,
         ingredients: request.ingredients,
-      available: request.available,
+      available: true,
     );
 
     _pizzas.insert(0, code);

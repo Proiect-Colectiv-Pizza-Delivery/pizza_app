@@ -6,6 +6,19 @@ class Validator {
     return null;
   }
 
+  static String? validatePrice(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    try {
+      int.parse(s);
+    } catch (e) {
+      return "Must be a integer";
+    }
+
+    return null;
+  }
+
   static String? validateDate(String? s) {
     if (s == null || s.isEmpty) {
       return "* Required";

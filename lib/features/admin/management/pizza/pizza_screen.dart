@@ -55,7 +55,7 @@ class PizzaScreen extends StatelessWidget {
                     itemCount: pizza.ingredients.length,
                     itemBuilder: (context, index) => IngredientSelectionCard(
                       ingredient: pizza.ingredients[index],
-                      alwaysSelected: true,
+                      isSelected: true,
                     ),
                   ),
                 ),
@@ -65,8 +65,10 @@ class PizzaScreen extends StatelessWidget {
                     text: "Update",
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const PizzaForm(type: FormType.update),
+                        builder: (context) => PizzaForm(
+                          type: FormType.update,
+                          pizza: pizza,
+                        ),
                       ),
                     ),
                   ),
