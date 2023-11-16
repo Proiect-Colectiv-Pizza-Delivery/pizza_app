@@ -11,7 +11,7 @@ import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_c
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class PizzaForm extends StatefulWidget {
-  final FormType type;
+  final PizzaFormType type;
   final Pizza? pizza;
   const PizzaForm({super.key, required this.type, this.pizza});
 
@@ -147,14 +147,14 @@ class _PizzaFormState extends State<PizzaForm> {
 
   void _onDonePressed() {
     switch (widget.type) {
-      case (FormType.add):
+      case (PizzaFormType.add):
         BlocProvider.of<PizzaBloc>(context).add(
           AddPizza(
               price: _priceController.text,
               name: _nameController.text,
               ingredients: ingredients),
         );
-      case (FormType.update):
+      case (PizzaFormType.update):
         BlocProvider.of<PizzaBloc>(context).add(
           UpdatePizza(
               pizzaId: widget.pizza!.id,
@@ -166,7 +166,7 @@ class _PizzaFormState extends State<PizzaForm> {
   }
 }
 
-enum FormType {
+enum PizzaFormType {
   update,
   add;
 

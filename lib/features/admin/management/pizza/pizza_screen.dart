@@ -66,7 +66,7 @@ class PizzaScreen extends StatelessWidget {
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => PizzaForm(
-                          type: FormType.update,
+                          type: PizzaFormType.update,
                           pizza: pizza,
                         ),
                       ),

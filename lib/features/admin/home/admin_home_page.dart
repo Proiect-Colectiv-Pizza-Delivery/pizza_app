@@ -3,6 +3,7 @@ import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/features/admin/home/admin_ingredient_tile.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_form.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_form.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/admin/home/admin_pizza_tile.dart';
@@ -69,9 +70,11 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => const PizzaForm(
-            type: FormType.add,
-          ),
+          builder: (_) => _selectedIndex == 0
+              ? const PizzaForm(
+                  type: PizzaFormType.add,
+                )
+              : const IngredientForm(type: IngredientFormType.add),
         ),
       ),
       child: Container(

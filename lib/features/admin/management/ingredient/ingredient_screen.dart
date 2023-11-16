@@ -67,7 +67,7 @@ class IngredientScreen extends StatelessWidget {
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => IngredientForm(
-                          type: FormType.update,
+                          type: IngredientFormType.update,
                           ingredient: ingredient,
                         ),
                       ),

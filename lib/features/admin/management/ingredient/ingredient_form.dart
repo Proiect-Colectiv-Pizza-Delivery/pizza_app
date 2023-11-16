@@ -10,7 +10,7 @@ import 'package:pizza_app/features/admin/management/ingredient/allergen_selectio
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 
 class IngredientForm extends StatefulWidget {
-  final FormType type;
+  final IngredientFormType type;
   final Ingredient? ingredient;
   const IngredientForm({super.key, required this.type, this.ingredient});
 
@@ -34,7 +34,7 @@ class _IngredientFormState extends State<IngredientForm> {
       _nameController.text = widget.ingredient!.name;
       _quantityController.text = widget.ingredient!.quantity.toString();
     } else {
-      allAllergens = [];
+      allergens = [];
     }
     isButtonEnabled = _validateForm();
   }
@@ -129,12 +129,12 @@ class _IngredientFormState extends State<IngredientForm> {
 
   void _onDonePressed() {
     switch (widget.type) {
-      case (FormType.add):
+      case (IngredientFormType.add):
         BlocProvider.of<IngredientBloc>(context).add(AddIngredient(
             name: _nameController.text,
             quantity: int.parse(_quantityController.text),
             allergens: allergens));
-      case (FormType.update):
+      case (IngredientFormType.update):
         BlocProvider.of<IngredientBloc>(context).add(UpdateIngredient(
             ingredientId: widget.ingredient!.id,
             name: _nameController.text,
@@ -144,7 +144,7 @@ class _IngredientFormState extends State<IngredientForm> {
   }
 }
 
-enum FormType {
+enum IngredientFormType {
   update,
   add;
 
