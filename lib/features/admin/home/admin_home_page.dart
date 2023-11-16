@@ -10,6 +10,9 @@ import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+part 'admin_pizza.dart';
+part 'admin_ingredient.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -18,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [_PizzaPage(), _IngredientPage()];
+  final List<Widget> _pages = [const PizzaPage(), const IngredientPage()];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -49,17 +52,11 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             label: "Pizza",
-            icon: Icon(
-              Icons.abc, // Use a transparent icon
-              color: Colors.transparent, // Set the color to transparent
-            ),
+            icon: Icon(Icons.local_pizza_rounded),
           ),
           BottomNavigationBarItem(
             label: "Ingredient",
-            icon: Icon(
-              Icons.abc, // Use a transparent icon
-              color: Colors.transparent, // Set the color to transparent
-            ),
+            icon: Icon(Icons.category_rounded),
           )
         ],
         currentIndex: _selectedIndex,
@@ -89,96 +86,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-}
-
-class _PizzaPage extends StatefulWidget {
-  @override
-  State<_PizzaPage> createState() => _PizzaPageState();
-}
-
-class _PizzaPageState extends State<_PizzaPage> {
-  late List<Pizza> codes;
-
-  @override
-  void initState() {
-    codes = Pizza.getPopulation();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<PizzaBloc, PizzaState>(
-      builder: (context, state) {
-        if (state is! PizzaLoaded) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ListView.separated(
-            itemCount: state.codes.length,
-            itemBuilder: (context, index) {
-              return PizzaTile(
-                pizza: state.codes[index],
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider(
-                indent: 1,
-                endIndent: 1,
-                thickness: 1,
-              );
-            },
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _IngredientPage extends StatefulWidget {
-  @override
-  State<_IngredientPage> createState() => _IngredientPageState();
-}
-
-class _IngredientPageState extends State<_IngredientPage> {
-  late List<Ingredient> ingredients;
-
-  @override
-  void initState() {
-    ingredients = Ingredient.getPopulation();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<IngredientBloc, IngredientState>(
-        builder: (context, state) {
-      if (state is! IngredientLoaded) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: ListView.separated(
-          itemCount: state.ingredients.length,
-          itemBuilder: (context, index) {
-            return IngredientTile(
-              ingredient: state.ingredients[index],
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(
-              indent: 1,
-              endIndent: 1,
-              thickness: 1,
-            );
-          },
-        ),
-      );
-    });
   }
 }

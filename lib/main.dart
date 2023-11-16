@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                 ..add(const FetchIngredients())),
         ],
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Slice2You',
           theme: ThemeBuilder.getThemeData(),
           home: const HomePage(),
         ),
