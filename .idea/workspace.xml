@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94a2d74d-2f4d-4c29-843c-069c5bc36440" name="Changes" comment="refactored code">
-      <change afterPath="$PROJECT_DIR$/assets/checked_radio_box.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/empty_radio_box.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/home_screen_assistent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/home_screen_trophy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="97a4d797-5204-4b2d-9679-275a39a7c810" name="Changes" comment="refactored class paths">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/domain/ingredients.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/ingredient.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/domain/pizza.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/pizza.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/common/validator/validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/validator/validator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,19 +42,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/Users/mihaigheorghe/StudioProjects/pizza_app/assets",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mihaigheorghe/StudioProjects/pizza_app/assets&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
@@ -119,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699371367287</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refactored class paths">
+      <created>1700127669641</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700127669641</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,7 +141,8 @@
     <MESSAGE value="added working app, adjusted the app to work with domain pizza and ingredients. Working delete functionality and read for pizzas" />
     <MESSAGE value="added podfiles for ios" />
     <MESSAGE value="refactored code" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored code" />
+    <MESSAGE value="refactored class paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored class paths" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

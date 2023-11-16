@@ -15,16 +15,15 @@ class AddPizza extends PizzaEvent {
   final String price;
   final String name;
   final List<Ingredient> ingredients;
-  final bool available;
 
   const AddPizza(
       {required this.price,
       required this.name,
       required this.ingredients,
-      required this.available});
+      });
 
   @override
-  List<Object?> get props => [price, name, ingredients, available];
+  List<Object?> get props => [price, name, ingredients];
 }
 
 class DeletePizza extends PizzaEvent {
@@ -38,28 +37,17 @@ class DeletePizza extends PizzaEvent {
 
 class UpdatePizza extends PizzaEvent {
   final String price;
-  final String pizzaId;
+  final int pizzaId;
   final String name;
   final List<Ingredient> ingredients;
-  final bool available;
 
   const UpdatePizza(
       {required this.price,
       required this.pizzaId,
       required this.name,
-      required this.ingredients,
-      required this.available});
+      required this.ingredients,});
 
   @override
   List<Object?> get props =>
-      [price, pizzaId, name, ingredients, available];
-}
-
-class UpdateUsername extends PizzaEvent {
-  final String username;
-
-  const UpdateUsername(this.username);
-
-  @override
-  List<Object?> get props => [username];
+      [price, pizzaId, name, ingredients];
 }

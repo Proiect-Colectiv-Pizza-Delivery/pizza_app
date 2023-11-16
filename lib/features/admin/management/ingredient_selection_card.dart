@@ -2,36 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 
-class IngredientSelectionCard extends StatefulWidget {
+class IngredientSelectionCard extends StatelessWidget {
   final Ingredient ingredient;
-  final bool alwaysSelected;
-  const IngredientSelectionCard({super.key, required this.ingredient, this.alwaysSelected = false});
+  final void Function()? onSelect;
+  final bool isSelected;
 
-  @override
-  State<IngredientSelectionCard> createState() =>
-      _IngredientSelectionCardState();
-}
-
-class _IngredientSelectionCardState extends State<IngredientSelectionCard> {
-  bool isCompleted = false;
+  const IngredientSelectionCard(
+      {super.key,
+      required this.ingredient,
+        this.onSelect,
+      required this.isSelected});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: !widget.alwaysSelected ? GestureDetector(
-        onTap: () => setState(() {
-          isCompleted = !isCompleted;
-        }),
-        child: isCompleted
-            ? SvgPicture.asset("assets/checked_radio_box.svg",)
+      trailing: GestureDetector(
+        onTap: onSelect,
+        child: isSelected
+            ? SvgPicture.asset(
+                "assets/checked_radio_box.svg",
+              )
             : SvgPicture.asset("assets/empty_radio_box.svg"),
-      ) : SvgPicture.asset("assets/checked_radio_box.svg",),
-      title: Text(widget.ingredient.name,
-          style: Theme.of(context).textTheme.bodyLarge),
+      ),
+      title:
+          Text(ingredient.name, style: Theme.of(context).textTheme.bodyLarge),
       subtitle: Text(
-        widget.ingredient.allergens
+        ingredient.allergens
             .toString()
-            .substring(1, widget.ingredient.allergens.toString().length - 1),
+            .substring(1, ingredient.allergens.toString().length - 1),
         style: Theme.of(context).textTheme.bodySmall,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,

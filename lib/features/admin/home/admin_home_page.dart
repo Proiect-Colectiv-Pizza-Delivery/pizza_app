@@ -49,10 +49,10 @@ class _HomePageState extends State<HomePage> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ListView.separated(
-              itemCount: state.codes.length,
+              itemCount: state.pizzas.length,
               itemBuilder: (context, index) {
                 return PizzaTile(
-                  pizza: state.codes[index],
+                  pizza: state.pizzas[index],
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

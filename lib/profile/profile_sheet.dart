@@ -33,7 +33,7 @@ class _ProfileSheetState extends State<ProfileSheet> {
 
   @override
   void initState() {
-    _controller.text = BlocProvider.of<PizzaBloc>(context).state.username;
+    _controller.text = "";
     enableButton = _controller.text.isNotEmpty;
     super.initState();
   }

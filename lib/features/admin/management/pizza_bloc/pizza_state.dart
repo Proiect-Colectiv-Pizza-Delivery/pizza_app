@@ -1,25 +1,24 @@
 part of 'pizza_bloc.dart';
 
 abstract class PizzaState extends Equatable {
-  final String username;
-  final List<Pizza> codes;
+  final List<Pizza> pizzas;
 
-  const PizzaState({required this.username, required this.codes});
+  const PizzaState({required this.pizzas});
 
   @override
-  List<Object?> get props => [username, codes];
+  List<Object?> get props => [pizzas];
 }
 
 class PizzaInitial extends PizzaState {
-  const PizzaInitial({required super.username, required super.codes});
+  const PizzaInitial({required super.pizzas});
 }
 
 class PizzaLoading extends PizzaState {
-  const PizzaLoading({required super.username, required super.codes});
+  const PizzaLoading({required super.pizzas});
 }
 
 class PizzaLoaded extends PizzaState {
-  const PizzaLoaded({required super.username, required super.codes});
+  const PizzaLoaded({required super.pizzas});
 }
 
 class PizzaError extends PizzaState {
@@ -27,13 +26,12 @@ class PizzaError extends PizzaState {
   final PizzaErrorReason reason;
 
   const PizzaError(
-      {required super.username,
-      required super.codes,
+      {required super.pizzas,
       required this.message,
       required this.reason});
 
   @override
-  List<Object> get props => [username, message, reason];
+  List<Object> get props => [message, reason];
 }
 
 enum PizzaErrorReason {
