@@ -23,19 +23,8 @@ class IngredientScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primary,
-            title: GestureDetector(
-                onTap: () => _showIngredientInfo(context),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      ingredient.name,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    const Spacer(),
-                  ],
-                )),
+            title: Text(ingredient.name,
+                style: Theme.of(context).textTheme.titleLarge),
             leading: GestureDetector(
               onTap: () => Navigator.of(context).pop(),
               child: const Icon(Icons.arrow_back_ios_new),
@@ -45,10 +34,10 @@ class IngredientScreen extends StatelessWidget {
             padding: const EdgeInsets.all(32),
             child: Column(
               children: [
-                Text(
+                Padding(padding: const EdgeInsets.symmetric(vertical: 16), child: Text(
                   "Quantity: ${ingredient.quantity}",
                   style: Theme.of(context).textTheme.titleLarge,
-                ),
+                ),),
                 Expanded(
                   child: ListView.builder(
                     itemCount: ingredient.allergens.length,
@@ -77,7 +66,7 @@ class IngredientScreen extends StatelessWidget {
                   onPressed: () => BlocProvider.of<IngredientBloc>(context).add(
                     DeleteIngredient(ingredient),
                   ),
-                  isLoading: state is PizzaLoading,
+                  isLoading: state is IngredientLoading,
                 ),
               ],
             ),
