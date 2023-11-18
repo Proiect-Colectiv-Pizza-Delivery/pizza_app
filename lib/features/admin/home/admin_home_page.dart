@@ -60,6 +60,8 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.category_rounded),
           )
         ],
+        unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
+        selectedLabelStyle: Theme.of(context).textTheme.labelMedium,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
