@@ -75,9 +75,7 @@ class PizzaScreen extends StatelessWidget {
                 ),
                 DefaultButton(
                   text: "Delete",
-                  onPressed: () => BlocProvider.of<PizzaBloc>(context).add(
-                    DeletePizza(pizza),
-                  ),
+                  onPressed: () => {_onDeletePressed(context)},
                   isLoading: state is PizzaLoading,
                 ),
               ],
@@ -108,6 +106,37 @@ class PizzaScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onDeletePressed(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Delete Confirmation',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            content: Text(
+                "Are you sure you want to delete this pizza? This action cannot be undone.",
+                style: Theme.of(context).textTheme.bodyLarge),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cancel",
+                      style: Theme.of(context).textTheme.titleMedium)),
+              TextButton(
+                  onPressed: () {
+                    BlocProvider.of<PizzaBloc>(context).add(DeletePizza(pizza));
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK",
+                      style: Theme.of(context).textTheme.titleMedium))
+            ],
+          );
+        });
   }
 
   void _showPizzaInfo(BuildContext context) {

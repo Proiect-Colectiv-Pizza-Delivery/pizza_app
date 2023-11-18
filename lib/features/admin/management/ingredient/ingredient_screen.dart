@@ -66,18 +66,47 @@ class IngredientScreen extends StatelessWidget {
                   ),
                 ),
                 DefaultButton(
-                  text: "Delete",
-                  onPressed: () => BlocProvider.of<IngredientBloc>(context).add(
-                    DeleteIngredient(ingredient),
-                  ),
-                  isLoading: state is IngredientLoading,
-                ),
+                    text: "Delete",
+                    onPressed: () => {_onDeletePressed(context)},
+                    isLoading: state is IngredientLoading)
               ],
             ),
           ),
         );
       },
     );
+  }
+
+  void _onDeletePressed(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Delete Confirmation',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            content: Text(
+                "Are you sure you want to delete this ingredient? This action cannot be undone.",
+                style: Theme.of(context).textTheme.bodyLarge),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cancel",
+                      style: Theme.of(context).textTheme.titleMedium)),
+              TextButton(
+                  onPressed: () {
+                    BlocProvider.of<IngredientBloc>(context)
+                        .add(DeleteIngredient(ingredient));
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK",
+                      style: Theme.of(context).textTheme.titleMedium))
+            ],
+          );
+        });
   }
 
   void _showIngredientInfo(BuildContext context) {
