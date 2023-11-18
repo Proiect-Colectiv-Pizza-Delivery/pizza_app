@@ -17,20 +17,96 @@ class Pizza extends Equatable {
   });
 
   static List<Pizza> getPopulation() {
-    List<Pizza> pizzas = [];
-    List<Ingredient> ingredients = Ingredient.getPopulation();
-
-    for (int i = 0; i <= 5; i++) {
-      Pizza pizza = Pizza(
-          id: i,
-          price: i * 2,
-          name: 'Pizza$i',
-          ingredients: ingredients,
-          available: i % 2 == 0);
-
-      pizzas.add(pizza);
-    }
-    return pizzas;
+    final List<Ingredient> ingrs = Ingredient.getPopulation();
+    return [
+      Pizza(
+          id: 1,
+          price: 30,
+          name: "Quattro Formaggi",
+          ingredients: [ingrs[4], ingrs[6], ...ingrs.sublist(0, 4)],
+          available: true),
+      Pizza(
+          id: 2,
+          price: 32,
+          name: "Diavola",
+          ingredients: [ingrs[4], ...ingrs.sublist(6, 11)],
+          available: true),
+      Pizza(
+          id: 3,
+          price: 22,
+          name: "Margherita",
+          ingredients: [ingrs[12], ...ingrs.sublist(6, 8), ingrs[1], ingrs[11]],
+          available: true),
+      Pizza(
+          id: 4,
+          price: 29,
+          name: "Hawaiian",
+          ingredients: [ingrs[4], ingrs[6], ingrs[13], ingrs[14], ingrs[1]],
+          available: true),
+      Pizza(
+          id: 5,
+          price: 30,
+          name: "Spicy Hawaiian",
+          ingredients: [ingrs[4], ingrs[6], ingrs[13], ingrs[9], ingrs[1]],
+          available: true),
+      Pizza(
+          id: 6,
+          price: 30,
+          name: "Extra Spicy Hawaiian",
+          ingredients: [
+            ingrs[4],
+            ingrs[6],
+            ingrs[13],
+            ingrs[9],
+            ingrs[8],
+            ingrs[1]
+          ],
+          available: true),
+      Pizza(
+          id: 7,
+          price: 27,
+          name: "Pizza Bianca",
+          ingredients: [ingrs[15], ingrs[1], ingrs[3], ingrs[16]],
+          available: true),
+      Pizza(
+          id: 8,
+          price: 28,
+          name: "Veggie Supreme",
+          ingredients: [ingrs[4], ...ingrs.sublist(18, 22), ingrs[17]],
+          available: true),
+      Pizza(
+          id: 9,
+          price: 26,
+          name: "Goat Cheese Pizza",
+          ingredients: [ingrs[4], ingrs[6], ingrs[19], ingrs[2], ingrs[11]],
+          available: true),
+      Pizza(
+          id: 10,
+          price: 27,
+          name: "Veggie Pizza with Avoicade",
+          ingredients: [
+            ingrs[4],
+            ingrs[6],
+            ingrs[2],
+            ingrs[22],
+            ingrs[23],
+            ingrs[11]
+          ],
+          available: true),
+      Pizza(
+          id: 11,
+          price: 26,
+          name: "Mushroom Pizza",
+          ingredients: [
+            ingrs[4],
+            ingrs[18],
+            ingrs[2],
+            ingrs[1],
+            ingrs[25],
+            ingrs[24]
+          ],
+          available: true)
+    ];
   }
 
   Map<String, dynamic> toMap() {
@@ -53,12 +129,7 @@ class Pizza extends Equatable {
   }
 
   String ingredientsString() {
-    var string = "";
-    for (var i in ingredients) {
-      string += "${i.name}, ";
-    }
-
-    return string.substring(0, string.length - 2);
+    return ingredients.map((e) => e.name).join(", ");
   }
 
   @override
