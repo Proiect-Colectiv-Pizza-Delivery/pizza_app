@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
@@ -117,6 +119,6 @@ class _IngredientTileState extends State<IngredientTile> {
         ingredientId: ingredient.id,
         name: ingredient.name,
         allergens: ingredient.allergens,
-        quantity: ingredient.quantity + quantity));
+        quantity: max(ingredient.quantity + quantity, 0)));
   }
 }

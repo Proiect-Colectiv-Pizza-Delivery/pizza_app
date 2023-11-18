@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/allergen_selection_card.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_form.dart';
-import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class IngredientScreen extends StatelessWidget {
   final Ingredient ingredient;
@@ -23,8 +22,10 @@ class IngredientScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primary,
-            title: Text(ingredient.name,
-                style: Theme.of(context).textTheme.titleLarge),
+            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(ingredient.name,
+                  style: Theme.of(context).textTheme.titleLarge),
+            ]),
             leading: GestureDetector(
               onTap: () => Navigator.of(context).pop(),
               child: const Icon(Icons.arrow_back_ios_new),
@@ -34,10 +35,13 @@ class IngredientScreen extends StatelessWidget {
             padding: const EdgeInsets.all(32),
             child: Column(
               children: [
-                Padding(padding: const EdgeInsets.symmetric(vertical: 16), child: Text(
-                  "Quantity: ${ingredient.quantity}",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Text(
+                    "Quantity: ${ingredient.quantity}",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: ingredient.allergens.length,
