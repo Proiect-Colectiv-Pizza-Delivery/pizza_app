@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97a4d797-5204-4b2d-9679-275a39a7c810" name="Changes" comment="refactored class paths">
+    <list default="true" id="97a4d797-5204-4b2d-9679-275a39a7c810" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/common/validator/validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/validator/validator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/domain/pizza_create_request.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/home/admin_home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/ingredient_selection_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_bloc/pizza_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_form.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profile/profile_sheet.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/ingredient_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/ingredients/ingredient_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/ingredient_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/ingredients/ingredient_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/pizza_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/pizza/pizza_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/data/repository/pizza_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/data/repository/pizza/pizza_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +49,17 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/mihaigheorghe/StudioProjects/pizza_app/assets&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mihaigheorghe/StudioProjects/pizza_app/assets&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -62,6 +69,8 @@
       <recent name="$PROJECT_DIR$/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/data/repository/pizza" />
+      <recent name="$PROJECT_DIR$/lib/data/repository/ingredients" />
       <recent name="$PROJECT_DIR$/lib/features/admin/management" />
     </key>
   </component>

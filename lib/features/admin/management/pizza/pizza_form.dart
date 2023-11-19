@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/validator/validator.dart';
@@ -8,11 +7,11 @@ import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
-import 'package:pizza_app/features/admin/management/ingredient_selection_card.dart';
-import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_card.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class PizzaForm extends StatefulWidget {
-  final FormType type;
+  final PizzaFormType type;
   final Pizza? pizza;
   const PizzaForm({super.key, required this.type, this.pizza});
 
@@ -86,7 +85,7 @@ class _PizzaFormState extends State<PizzaForm> {
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextInputField(
               controller: _priceController,
-              validator: Validator.validatePrice,
+              validator: Validator.validatePositiveInt,
               labelText: "Price",
               keyboardType: TextInputType.number,
             ),
@@ -142,20 +141,20 @@ class _PizzaFormState extends State<PizzaForm> {
 
   bool _validateForm() {
     return Validator.validateEmpty(_nameController.text) == null &&
-        Validator.validatePrice(_priceController.text) == null &&
+        Validator.validatePositiveInt(_priceController.text) == null &&
         ingredients.isNotEmpty;
   }
 
   void _onDonePressed() {
     switch (widget.type) {
-      case (FormType.add):
+      case (PizzaFormType.add):
         BlocProvider.of<PizzaBloc>(context).add(
           AddPizza(
               price: _priceController.text,
               name: _nameController.text,
               ingredients: ingredients),
         );
-      case (FormType.update):
+      case (PizzaFormType.update):
         BlocProvider.of<PizzaBloc>(context).add(
           UpdatePizza(
               pizzaId: widget.pizza!.id,
@@ -167,7 +166,7 @@ class _PizzaFormState extends State<PizzaForm> {
   }
 }
 
-enum FormType {
+enum PizzaFormType {
   update,
   add;
 

@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class Validator {
   static String? validateEmpty(String? s) {
     if (s == null || s.isEmpty) {
@@ -12,10 +10,26 @@ class Validator {
     if (s == null || s.isEmpty) {
       return "* Required";
     }
-    try{
+    try {
       int.parse(s);
-    } catch (e){
+    } catch (e) {
       return "Must be a integer";
+    }
+
+    return null;
+  }
+
+  static String? validatePositiveInt(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    try {
+      int res = int.parse(s);
+      if (res < 0) {
+        return "Integer must be greater than 0";
+      }
+    } catch (e) {
+      return "Must be an integer";
     }
 
     return null;
@@ -29,7 +43,7 @@ class Validator {
       return "Exp Date must be of format yyyy-MM-dd";
     }
 
-    if(DateTime.tryParse(s) == null){
+    if (DateTime.tryParse(s) == null) {
       return "Please enter a valid date";
     }
     return null;

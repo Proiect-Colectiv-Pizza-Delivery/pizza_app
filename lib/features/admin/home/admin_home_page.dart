@@ -1,11 +1,18 @@
 import 'package:pizza_app/common/theme/colors.dart';
+import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
-import 'package:pizza_app/features/admin/management/pizza_form.dart';
-import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/home/admin_ingredient_tile.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_form.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_form.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/admin/home/admin_pizza_tile.dart';
 import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'admin_pizza.dart';
+part 'admin_ingredient.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,11 +22,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List<Pizza> codes;
-  @override
-  void initState() {
-    codes = Pizza.getPopulation();
-    super.initState();
+  final List<Widget> _pages = [const PizzaPage(), const IngredientPage()];
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; // Update the selected tab index
+    });
   }
 
   @override
@@ -39,32 +48,22 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: _addButton(),
-      body: BlocBuilder<PizzaBloc, PizzaState>(
-        builder: (context, state) {
-          if (state is! PizzaLoaded) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ListView.separated(
-              itemCount: state.pizzas.length,
-              itemBuilder: (context, index) {
-                return PizzaTile(
-                  pizza: state.pizzas[index],
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const Divider(
-                  indent: 1,
-                  endIndent: 1,
-                  thickness: 1,
-                );
-              },
-            ),
-          );
-        },
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            label: "Pizza",
+            icon: Icon(Icons.local_pizza_rounded),
+          ),
+          BottomNavigationBarItem(
+            label: "Ingredient",
+            icon: Icon(Icons.category_rounded),
+          )
+        ],
+        unselectedLabelStyle: Theme.of(context).textTheme.labelMedium,
+        selectedLabelStyle: Theme.of(context).textTheme.labelMedium,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -73,7 +72,11 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => const PizzaForm(type: FormType.add,),
+          builder: (_) => _selectedIndex == 0
+              ? const PizzaForm(
+                  type: PizzaFormType.add,
+                )
+              : const IngredientForm(type: IngredientFormType.add),
         ),
       ),
       child: Container(

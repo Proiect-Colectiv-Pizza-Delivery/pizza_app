@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/data/domain/pizza_create_request.dart';
-import 'package:pizza_app/data/repository/pizza_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 
 part 'pizza_event.dart';
 part 'pizza_state.dart';
