@@ -36,10 +36,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
+        automaticallyImplyLeading: false,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Slice2You"),
-            const Spacer(),
+            const Expanded(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [Text("Slice2You")]),
+            ),
             GestureDetector(
               onTap: () => ProfileSheet.showAsModalBottomSheet(context),
               child: const Icon(Icons.person),

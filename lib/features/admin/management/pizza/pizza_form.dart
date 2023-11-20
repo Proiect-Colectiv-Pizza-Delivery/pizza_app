@@ -7,6 +7,7 @@ import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_card.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
@@ -80,6 +81,7 @@ class _PizzaFormState extends State<PizzaForm> {
             controller: _nameController,
             validator: Validator.validateEmpty,
             labelText: "Pizza Name",
+            enableSpaceKey: true,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
@@ -96,35 +98,39 @@ class _PizzaFormState extends State<PizzaForm> {
   }
 
   Widget _ingredientsList() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Text(
-            "Select Ingredients",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: Ingredient.getPopulation().length,
-            itemBuilder: (context, index) => IngredientSelectionCard(
-              ingredient: allIngredients[index],
-              isSelected: ingredients.contains(allIngredients[index]),
-              onSelect: () => setState(
-                () {
-                  if (ingredients.contains(allIngredients[index])) {
-                    ingredients.remove(allIngredients[index]);
-                  } else {
-                    ingredients.add(allIngredients[index]);
-                  }
-                  isButtonEnabled = _validateForm();
-                },
-              ),
+    return BlocBuilder<IngredientBloc, IngredientState>(
+      builder: (context, state) => Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Text(
+              "Select Ingredients",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
-        ),
-      ],
+          Expanded(
+            child: state is IngredientLoaded ? ListView.builder(
+              itemCount: state.ingredients.length,
+              itemBuilder: (context, index) => IngredientSelectionCard(
+                ingredient: state.ingredients[index],
+                isSelected:
+                    ingredients.contains(state.ingredients[index]),
+                onSelect: () => setState(
+                  () {
+                    if (ingredients
+                        .contains(state.ingredients[index])) {
+                      ingredients.remove(state.ingredients[index]);
+                    } else {
+                      ingredients.add(state.ingredients[index]);
+                    }
+                    isButtonEnabled = _validateForm();
+                  },
+                ),
+              ),
+            ) : const CircularProgressIndicator(),
+          ),
+        ],
+      ),
     );
   }
 

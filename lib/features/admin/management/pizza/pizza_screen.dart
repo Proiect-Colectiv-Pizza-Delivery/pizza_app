@@ -1,4 +1,5 @@
 import 'package:pizza_app/common/widgets/default_button.dart';
+import 'package:pizza_app/common/widgets/dialogs.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/common/theme/colors.dart';
@@ -35,10 +36,7 @@ class PizzaScreen extends StatelessWidget {
                   pizza.price.toString(),
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                GestureDetector(
-                  onTap: () => _showPizzaInfo(context),
-                  child: const Icon(Icons.attach_money_rounded),
-                ),
+                const Icon(Icons.attach_money_rounded),
               ],
             ),
             leading: GestureDetector(
@@ -109,34 +107,17 @@ class PizzaScreen extends StatelessWidget {
   }
 
   void _onDeletePressed(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              'Delete Confirmation',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            content: Text(
-                "Are you sure you want to delete this pizza? This action cannot be undone.",
-                style: Theme.of(context).textTheme.bodyLarge),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("Cancel",
-                      style: Theme.of(context).textTheme.titleMedium)),
-              TextButton(
-                  onPressed: () {
-                    BlocProvider.of<PizzaBloc>(context).add(DeletePizza(pizza));
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("OK",
-                      style: Theme.of(context).textTheme.titleMedium))
-            ],
-          );
-        });
+    NativeDialog(
+        title: 'Delete Confirmation',
+        content:
+            "Are you sure you want to delete this pizza? This action cannot be undone.",
+        firstButtonText: "Cancel",
+        secondButtonText: "Ok",
+        onFirstButtonPress: () => Navigator.of(context).pop(),
+        onSecondButtonPress: () {
+          BlocProvider.of<PizzaBloc>(context).add(DeletePizza(pizza));
+          Navigator.of(context).pop();
+        }).showOSDialog(context);
   }
 
   void _showPizzaInfo(BuildContext context) {

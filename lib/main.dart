@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/common/welcome_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Slice2You',
           theme: ThemeBuilder.getThemeData(),
-          home: const HomePage(),
+          home: const WelcomeScreen(),
         ),
       ),
     );
