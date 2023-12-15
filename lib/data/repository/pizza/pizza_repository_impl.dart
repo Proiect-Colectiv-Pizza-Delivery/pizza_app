@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/data/domain/pizza_create_request.dart';
-import 'package:pizza_app/data/repository/pizza_repository.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 
 class PizzaRepositoryImpl extends PizzaRepository {
   late List<Pizza> _pizzas;
@@ -22,7 +22,7 @@ class PizzaRepositoryImpl extends PizzaRepository {
         name: request.name,
       price: request.price,
         ingredients: request.ingredients,
-      available: request.available,
+      available: true,
     );
 
     _pizzas.insert(0, code);

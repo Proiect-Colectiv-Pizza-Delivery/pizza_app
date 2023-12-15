@@ -4,9 +4,9 @@ import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_app/features/admin/management/ingredient_selection_card.dart';
-import 'package:pizza_app/features/admin/management/pizza_form.dart';
-import 'package:pizza_app/features/admin/management/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza/ingredient_selection_card.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_form.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 
 class PizzaScreen extends StatelessWidget {
   final Pizza pizza;
@@ -55,7 +55,7 @@ class PizzaScreen extends StatelessWidget {
                     itemCount: pizza.ingredients.length,
                     itemBuilder: (context, index) => IngredientSelectionCard(
                       ingredient: pizza.ingredients[index],
-                      alwaysSelected: true,
+                      isSelected: true,
                     ),
                   ),
                 ),
@@ -65,17 +65,17 @@ class PizzaScreen extends StatelessWidget {
                     text: "Update",
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const PizzaForm(type: FormType.update),
+                        builder: (context) => PizzaForm(
+                          type: PizzaFormType.update,
+                          pizza: pizza,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 DefaultButton(
                   text: "Delete",
-                  onPressed: () => BlocProvider.of<PizzaBloc>(context).add(
-                    DeletePizza(pizza),
-                  ),
+                  onPressed: () => {_onDeletePressed(context)},
                   isLoading: state is PizzaLoading,
                 ),
               ],
@@ -106,6 +106,37 @@ class PizzaScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onDeletePressed(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Delete Confirmation',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            content: Text(
+                "Are you sure you want to delete this pizza? This action cannot be undone.",
+                style: Theme.of(context).textTheme.bodyLarge),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Cancel",
+                      style: Theme.of(context).textTheme.titleMedium)),
+              TextButton(
+                  onPressed: () {
+                    BlocProvider.of<PizzaBloc>(context).add(DeletePizza(pizza));
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK",
+                      style: Theme.of(context).textTheme.titleMedium))
+            ],
+          );
+        });
   }
 
   void _showPizzaInfo(BuildContext context) {
