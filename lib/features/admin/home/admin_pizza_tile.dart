@@ -1,4 +1,4 @@
-import 'package:pizza_app/common/theme/colors.dart';
+import 'package:pizza_app/common/theme/text_stylers.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class PizzaTile extends StatelessWidget {
                           const Icon(Icons.arrow_forward_ios_rounded)
                         ],
                       ),
-                      _subtitle(context, pizza.ingredientsString()),
+                      TextStyler.subtitle(context, pizza.ingredientsString()),
                     ],
                   ),
                 )
@@ -82,18 +82,6 @@ class PizzaTile extends StatelessWidget {
           //   ),
         ],
       ),
-    );
-  }
-
-  Widget _subtitle(BuildContext context, String text) {
-    return RichText(
-      text: TextSpan(
-        text: text,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: AppColors.secondary,
-            ),
-      ),
-      maxLines: 3,
     );
   }
 }
