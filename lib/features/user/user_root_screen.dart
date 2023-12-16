@@ -1,5 +1,6 @@
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
+import 'package:pizza_app/features/user/profile/profile_screen.dart';
 import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,13 @@ class UserRootScreen extends StatefulWidget {
 }
 
 class _UserRootScreenState extends State<UserRootScreen> {
-  final List<Widget> _pages = [const UserHomePage(),const UserHomePage(),const UserHomePage(),const UserHomePage(),];
+  final List<Widget> _pages = [
+    const UserHomePage(),
+    const UserHomePage(),
+    const UserHomePage(),
+    const UserHomePage(),
+    const ProfileScreen()
+  ];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

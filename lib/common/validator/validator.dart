@@ -48,4 +48,45 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateEmail(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(s)) {
+      return "Please enter a valid email";
+    }
+    return null;
+  }
+
+  static String? validateName(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    if (!RegExp(r"^[a-zA-Z]+(?:[-'’][a-zA-Z]+)*$").hasMatch(s)) {
+      return "First name may only contain ascii letters and -, ' and ’ characters";
+    }
+    return null;
+  }
+
+  static String? validateUsername(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    if (!RegExp(r"\w*").hasMatch(s)) {
+      return "Username may only contain ascii letters and underscore (_).";
+    }
+    return null;
+  }
+
+  static String? validatePhoneNumber(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    if (!RegExp(r"^\b0\d{9}\b$").hasMatch(s) &&
+        !RegExp(r"^\+\d{11}$").hasMatch(s)) {
+      return "Please enter a valid phone number";
+    }
+    return null;
+  }
 }

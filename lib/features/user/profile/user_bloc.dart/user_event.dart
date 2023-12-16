@@ -7,6 +7,13 @@ class UserEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class FetchUser extends UserEvent {
+  const FetchUser();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class UpdateUser extends UserEvent {
   final String firstName;
   final String lastName;

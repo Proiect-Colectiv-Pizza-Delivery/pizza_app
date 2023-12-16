@@ -17,11 +17,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                 lastName: "Yung",
                 email: "emil_yung@gmail.com",
                 username: "eyung",
-                phoneNumber: "(555) 555-1234"))) {
-    on<UpdateUser>(_addToOrder);
+                phoneNumber: "+40758978965"))) {
+    on<UpdateUser>(_updateUser);
+    on<FetchUser>(_fetchUser);
   }
 
-  FutureOr<void> _addToOrder(UpdateUser event, Emitter<UserState> emit) async {
+  FutureOr<void> _fetchUser(FetchUser event, Emitter<UserState> emit) async {
+    emit(UserLoading(user: user));
+
+    user = const User(
+        firstName: "Emil",
+        lastName: "Yung",
+        email: "emil_yung@gmail.com",
+        username: "eyung",
+        phoneNumber: "+40758978965");
+
+    emit(UserLoaded(user: user));
+  }
+
+  FutureOr<void> _updateUser(UpdateUser event, Emitter<UserState> emit) async {
     emit(UserLoading(user: user));
 
     user = User(
