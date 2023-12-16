@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
+import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
 import 'package:pizza_app/features/user/user_root_screen.dart';
 
 void main() {
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (_) => IngredientBloc(_ingredientRepository)
                 ..add(const FetchIngredients())),
-          BlocProvider(create: (_) => UserBloc(_user)..add(const FetchUser()))
+          BlocProvider(create: (_) => UserBloc(_user)..add(const FetchUser())),
+          BlocProvider(create: (_) => CartBloc()),
         ],
         child: MaterialApp(
           title: 'Slice2You',

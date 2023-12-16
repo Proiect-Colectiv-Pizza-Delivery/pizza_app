@@ -1,7 +1,7 @@
 import 'package:pizza_app/common/theme/colors.dart';
+import 'package:pizza_app/features/user/cart/cart_screen.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
 import 'package:pizza_app/features/user/profile/profile_screen.dart';
-import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
 
 class UserRootScreen extends StatefulWidget {
@@ -12,13 +12,7 @@ class UserRootScreen extends StatefulWidget {
 }
 
 class _UserRootScreenState extends State<UserRootScreen> {
-  final List<Widget> _pages = [
-    const UserHomePage(),
-    const UserHomePage(),
-    const UserHomePage(),
-    const UserHomePage(),
-    const ProfileScreen()
-  ];
+  final List<Widget> _pages = [const UserHomePage(), const CartScreen()];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -32,14 +26,9 @@ class _UserRootScreenState extends State<UserRootScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
-        title: Row(
+        title: const Row(
           children: [
-            const Text("Slice2You"),
-            const Spacer(),
-            GestureDetector(
-              onTap: () => ProfileSheet.showAsModalBottomSheet(context),
-              child: const Icon(Icons.person),
-            )
+            Text("Slice2You"),
           ],
         ),
       ),
@@ -84,6 +73,7 @@ class _UserRootScreenState extends State<UserRootScreen> {
         showUnselectedLabels: true,
         showSelectedLabels: true,
         currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
       ),
     );
