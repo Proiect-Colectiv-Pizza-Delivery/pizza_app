@@ -14,4 +14,39 @@ class TextStyler {
       maxLines: 2,
     );
   }
+  static Widget priceSection(BuildContext context, int price) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Row(
+        children: [
+          Text(
+            "${(price * 1.3).toDouble().toStringAsPrecision(4)} \$",
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge
+                ?.copyWith(
+                color: AppColors.black.withOpacity(0.4),
+                decoration: TextDecoration.lineThrough),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              padding: const EdgeInsets.all(4),
+              child: Text(
+                "${price.toDouble().toStringAsPrecision(4)} \$",
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge
+                    ?.copyWith(color: AppColors.white),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
