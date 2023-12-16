@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/data/domain/order_item.dart';
+import 'package:pizza_app/data/domain/pizza.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';

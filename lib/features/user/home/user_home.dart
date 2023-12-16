@@ -14,22 +14,7 @@ class UserHomePage extends StatefulWidget {
 class _UserHomePageState extends State<UserHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        title: Row(
-          children: [
-            const Text("Slice2You"),
-            const Spacer(),
-            GestureDetector(
-              onTap: () => {},
-              child: const Icon(Icons.person),
-            )
-          ],
-        ),
-      ),
-      // floatingActionButton: _addButton(),
-      body: BlocBuilder<PizzaBloc, PizzaState>(
+    return BlocBuilder<PizzaBloc, PizzaState>(
         builder: (context, state) {
           if (state is! PizzaLoaded) {
             return const Center(
@@ -55,7 +40,6 @@ class _UserHomePageState extends State<UserHomePage> {
             ),
           );
         },
-      ),
-    );
+      );
   }
 }

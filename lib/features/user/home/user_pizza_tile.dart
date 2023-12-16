@@ -42,7 +42,7 @@ class _UserPizzaTileState extends State<UserPizzaTile> {
                     children: [
                       Text(
                         pizza.name,
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context).textTheme.titleSmall,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),

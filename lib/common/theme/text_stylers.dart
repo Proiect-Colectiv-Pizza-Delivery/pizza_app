@@ -10,7 +10,8 @@ class TextStyler {
               color: AppColors.secondary,
             ),
       ),
-      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
     );
   }
 }

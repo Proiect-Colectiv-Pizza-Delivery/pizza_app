@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
+import 'package:pizza_app/features/user/user_root_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Slice2You',
           theme: ThemeBuilder.getThemeData(),
-          home: MyApp.admin ? const HomePage() : const UserHomePage(),
+          home: MyApp.admin ? const HomePage() : const UserRootScreen(),
         ),
       ),
     );
