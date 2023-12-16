@@ -1,6 +1,4 @@
 import 'package:pizza_app/common/theme/colors.dart';
-import 'package:pizza_app/features/admin/management/ingredient/ingredient_form.dart';
-import 'package:pizza_app/features/admin/management/pizza/pizza_form.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
 import 'package:pizza_app/profile/profile_sheet.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +11,12 @@ class UserRootScreen extends StatefulWidget {
 }
 
 class _UserRootScreenState extends State<UserRootScreen> {
-  final List<Widget> _pages = [const UserHomePage()];
+  final List<Widget> _pages = [const UserHomePage(),const UserHomePage(),const UserHomePage(),const UserHomePage(),];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = 0; // Update the selected tab index
+      _selectedIndex = index; // Update the selected tab index
     });
   }
 
