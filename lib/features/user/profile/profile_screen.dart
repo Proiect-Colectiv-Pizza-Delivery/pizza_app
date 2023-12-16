@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +9,7 @@ import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/user.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,6 +21,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isButtonEnabled = true;
 
+  File? _profilePicture;
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -43,6 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
+                _profilePicturePicker(),
                 _textForm(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -62,6 +67,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _lastNameController.text = user.lastName;
     _emailController.text = user.email;
     _phoneNumberController.text = user.phoneNumber;
+
+    setState(() {
+      _profilePicture = user.profilePicture;
+    });
+  }
+
+  Future<void> _getImageFromGallery() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _profilePicture = File(pickedImage.path);
+      }
+    });
+  }
+
+  Widget _profilePicturePicker() {
+    return Padding(
+        padding: const EdgeInsets.all(32),
+        child: GestureDetector(
+          onTap: _getImageFromGallery,
+          child: CircleAvatar(
+            radius: 120,
+            backgroundColor: Colors.grey[300],
+            child: _profilePicture != null
+                ? ClipOval(
+                    child: Image.file(
+                      _profilePicture!,
+                      width: 240,
+                      height: 240,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                : Icon(
+                    Icons.camera_alt,
+                    size: 60,
+                    color: Colors.grey[600],
+                  ),
+          ),
+        ));
   }
 
   Widget _textForm() {
@@ -118,7 +164,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         lastName: _lastNameController.text,
         email: _emailController.text,
         username: state.user.username,
-        phoneNumber: state.user.phoneNumber));
+        phoneNumber: state.user.phoneNumber,
+        profilePicture: _profilePicture));
   }
 
   bool _validateForm() {

@@ -20,15 +20,17 @@ class UpdateUser extends UserEvent {
   final String email;
   final String username;
   final String phoneNumber;
+  final File? profilePicture;
 
   const UpdateUser(
       {required this.firstName,
       required this.lastName,
       required this.email,
       required this.username,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      this.profilePicture});
 
   @override
   List<Object?> get props =>
-      [firstName, lastName, email, username, phoneNumber];
+      [firstName, lastName, email, username, phoneNumber, profilePicture];
 }

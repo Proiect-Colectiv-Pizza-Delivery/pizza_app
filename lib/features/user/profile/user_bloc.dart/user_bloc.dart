@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:equatable/equatable.dart';
@@ -43,7 +44,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         lastName: event.lastName,
         email: event.email,
         username: event.username,
-        phoneNumber: event.phoneNumber);
+        phoneNumber: event.phoneNumber,
+        profilePicture: event.profilePicture);
 
     emit(UserLoaded(user: user));
   }
