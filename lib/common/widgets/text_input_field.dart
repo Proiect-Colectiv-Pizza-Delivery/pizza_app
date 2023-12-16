@@ -6,6 +6,7 @@ class TextInputField extends StatefulWidget {
   final String? labelText;
   final String? hintText;
   final bool isPasswordField;
+  final bool enabled;
   final FormFieldValidator<String>? validator;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -23,6 +24,7 @@ class TextInputField extends StatefulWidget {
       {Key? key,
       this.labelText,
       this.hintText,
+        this.enabled = true,
       this.isPasswordField = false,
       this.keyboardType,
       this.textInputAction,
@@ -69,6 +71,7 @@ class _TextInputFieldState extends State<TextInputField> {
             ),
           ),
         TextFormField(
+          enabled: widget.enabled,
           inputFormatters: [
             LengthLimitingTextInputFormatter(widget.characterLimit),
             //disable space key

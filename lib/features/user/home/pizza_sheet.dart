@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/theme/text_stylers.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
+import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
 
 class PizzaSheet extends StatelessWidget {
   final Pizza pizza;
@@ -116,8 +118,8 @@ class _AddSectionState extends State<AddSection> {
         color: AppColors.white,
         border: Border(
           top: BorderSide(
-            color: AppColors.tertiary, // Set the top border color to black
-            width: 0.3, // Set the top border width
+            color: AppColors.tertiary,
+            width: 0.3,
           ),
         ),
       ),
@@ -128,8 +130,8 @@ class _AddSectionState extends State<AddSection> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.0),
               border: Border.all(
-                color: AppColors.tertiary, // Set the border color to black
-                width: 0.5, // Set the border width
+                color: AppColors.tertiary,
+                width: 0.5,
               ),
             ),
             child: Row(
@@ -143,7 +145,9 @@ class _AddSectionState extends State<AddSection> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 32),
-              child: DefaultButton(onPressed: () {}, text: "Add"),
+              child: DefaultButton(onPressed: () {
+                BlocProvider.of<CartBloc>(context).add(AddToCart(widget.pizza, _count));
+              }, text: "Add"),
             ),
           ),
         ],
