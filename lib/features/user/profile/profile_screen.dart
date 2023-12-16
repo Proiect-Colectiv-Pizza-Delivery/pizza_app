@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Text(
-                    "${state.user.username}'s Profile",
+                    "Signed in as: ${state.user.username}",
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
