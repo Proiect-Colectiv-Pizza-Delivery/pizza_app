@@ -12,12 +12,20 @@ class UserRootScreen extends StatefulWidget {
 }
 
 class _UserRootScreenState extends State<UserRootScreen> {
-  final List<Widget> _pages = [const UserHomePage(), const CartScreen()];
+  final List<Widget> _pages = [
+    const UserHomePage(),
+    const CartScreen(),
+    const Column(),
+    const Column(),
+    const ProfileScreen()
+  ];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index; // Update the selected tab index
+      if (index == 0 || index == 1 || index == 4) {
+        _selectedIndex = index; // Update the selected tab index
+      }
     });
   }
 
