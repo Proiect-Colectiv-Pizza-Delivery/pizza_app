@@ -1,7 +1,11 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/features/user/cart/cart_screen.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_app/features/user/order_history/bloc/history_bloc.dart';
+
+import 'order_history/order_history_screen.dart';
 
 class UserRootScreen extends StatefulWidget {
   const UserRootScreen({super.key});
@@ -11,17 +15,25 @@ class UserRootScreen extends StatefulWidget {
 }
 
 class _UserRootScreenState extends State<UserRootScreen> {
-  final List<Widget> _pages = [const UserHomePage(), const CartScreen()];
+  final List<Widget> _pages = [
+    const UserHomePage(),
+    const CartScreen(),
+    const OrderHistoryScreen()
+  ];
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
-      if(_selectedIndex == 0){
-        _selectedIndex = 1;
-      } else {
+      if (index >= _pages.length) {
         _selectedIndex = 0;
+      } else {
+        if (index == 2) {
+          BlocProvider.of<HistoryBloc>(context).add(const FetchHistory());
+        }
+        _selectedIndex = index;
       }
-    });
+    },
+    );
   }
 
   @override
@@ -48,12 +60,6 @@ class _UserRootScreenState extends State<UserRootScreen> {
             label: "Cart",
             icon: Icon(
               Icons.shopping_cart,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Search",
-            icon: Icon(
-              Icons.search,
             ),
           ),
           BottomNavigationBarItem(

@@ -14,7 +14,6 @@ class AddToCart extends CartEvent {
   List<Object?> get props => [pizza, quantity];
 }
 
-
 class AddAddress extends CartEvent {
   final String lineOne;
   final String lineTwo;
@@ -25,7 +24,6 @@ class AddAddress extends CartEvent {
   List<Object?> get props => [lineOne, lineTwo];
 }
 
-
 class RemoveFromCart extends CartEvent {
   final Pizza pizza;
   final int quantity;
@@ -34,4 +32,20 @@ class RemoveFromCart extends CartEvent {
 
   @override
   List<Object?> get props => [pizza, quantity];
+}
+
+class ConfirmOrder extends CartEvent {
+  final bool isPickup;
+  final String addressLineOne;
+  final String? addressLineTwo;
+  final double totalPrice;
+
+  const ConfirmOrder(
+      {this.isPickup = true,
+      required this.addressLineOne,
+        required this.totalPrice,
+      this.addressLineTwo});
+
+  @override
+  List<Object?> get props => [];
 }

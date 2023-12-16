@@ -8,7 +8,6 @@ import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/features/user/cart/add_address_sheet.dart';
 import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
-import 'package:slider_button/slider_button.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -55,8 +54,19 @@ class _CartScreenState extends State<CartScreen> {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: DefaultButton(
-                  onPressed: state.cartMap.isNotEmpty && (selectedAddress != null || pickupMethod == 1)
-                      ? () {}
+                  onPressed: state.cartMap.isNotEmpty &&
+                          (selectedAddress != null || pickupMethod == 1)
+                      ? () => BlocProvider.of<CartBloc>(context).add(
+                            ConfirmOrder(
+                              addressLineOne: pickupMethod == 0
+                                  ? selectedAddress!
+                                  : "Strada Paris 18",
+                              totalPrice: totalPrice +
+                                  tips +
+                                  (pickupMethod == 0 ? 4 : 0),
+                              isPickup: pickupMethod == 1,
+                            ),
+                          )
                       : null,
                   text: "Confirm Order",
                 ),
