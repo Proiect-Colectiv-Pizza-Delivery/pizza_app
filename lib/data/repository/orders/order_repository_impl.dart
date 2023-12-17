@@ -12,11 +12,12 @@ class OrderRepositoryImpl extends OrderRepository {
   }
 
   @override
-  Future<Order> addOrder(Order order) {
+  Future<Order> addOrder(Order order) async{
     Order savedOrder = order.copyWith(id: latestId);
     _orders.add(savedOrder);
     latestId++;
-    throw savedOrder;
+    await Future.delayed(const Duration(milliseconds: 200));
+    return savedOrder;
   }
 
   @override

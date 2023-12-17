@@ -12,6 +12,7 @@ import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/i
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
 import 'package:pizza_app/features/user/order_history/bloc/history_bloc.dart';
+import 'package:pizza_app/features/user/page_bloc/root_page_bloc.dart';
 import 'package:pizza_app/features/user/user_root_screen.dart';
 
 void main() {
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
               create: (_) => IngredientBloc(_ingredientRepository)
                 ..add(const FetchIngredients())),
           BlocProvider(create: (_) => CartBloc(_orderRepository)),
+          BlocProvider(create: (_) => RootPageBloc()),
           BlocProvider(
               create: (_) =>
                   HistoryBloc(_orderRepository)..add(const FetchHistory())),

@@ -25,7 +25,7 @@ class Order {
           pizzas: {pizzaPopulation[1]: 2, pizzaPopulation[3]: 1},
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
-          totalPrice: 300,
+          totalPrice: 100,
           date: DateTime.now(),
           isPickUp: false),
       Order(
@@ -33,7 +33,7 @@ class Order {
           pizzas: {pizzaPopulation[4]: 1, pizzaPopulation[6]: 3},
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
-          totalPrice: 300,
+          totalPrice: 120,
           date: DateTime.now(),
           isPickUp: true),
       Order(
@@ -41,7 +41,7 @@ class Order {
           pizzas: {pizzaPopulation[5]: 3, pizzaPopulation[2]: 1},
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
-          totalPrice: 300,
+          totalPrice: 130,
           date: DateTime.now(),
           isPickUp: false),
     ];
