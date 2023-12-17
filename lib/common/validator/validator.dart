@@ -35,17 +35,29 @@ class Validator {
     return null;
   }
 
-  static String? validateDate(String? s) {
+  static String? validateEmail(String? s) {
     if (s == null || s.isEmpty) {
       return "* Required";
     }
-    if (!RegExp(r"^\d{4}-\d{2}-\d{2}$").hasMatch(s)) {
-      return "Exp Date must be of format yyyy-MM-dd";
-    }
-
-    if (DateTime.tryParse(s) == null) {
-      return "Please enter a valid date";
+    bool emailValid = RegExp(r"^\S+@\S+\.\S+$").hasMatch(s);
+    if (!emailValid) {
+      return "Please enter a valid email address.";
     }
     return null;
+  }
+
+  static String? validatePass(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    const String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])((?=.*?[\^$*.\[\]{}()?"!@#%&/\\,><:;|_~`=+-])|'
+        r"(?=.*?['])).{8,64}$";
+    RegExp passwordRegex = RegExp(pattern);
+    if (!passwordRegex.hasMatch(s)) {
+      return "Password must contain one uppercase and lowercase letter, one special character and one number.";
+    } else {
+      return null;
+    }
   }
 }
