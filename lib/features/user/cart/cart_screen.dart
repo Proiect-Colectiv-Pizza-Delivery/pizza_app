@@ -4,11 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/theme/text_stylers.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
+import 'package:pizza_app/common/widgets/native_dialog.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/features/user/cart/add_address_sheet.dart';
 import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
-import 'package:slider_button/slider_button.dart';
+import 'package:pizza_app/features/user/page_bloc/root_page_bloc.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -25,6 +26,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+      print(state);
       int totalPrice = 0;
       state.cartMap.forEach((key, value) => totalPrice += value * key.price);
       if (selectedAddress == null) {
@@ -49,14 +51,37 @@ class _CartScreenState extends State<CartScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: _priceSection(totalPrice),
               ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: _tipsSection(),
+              ),
               pickupMethod == 0
                   ? _deliveryAddressSection(state)
                   : _pickUpAddressSection(),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: DefaultButton(
-                  onPressed: state.cartMap.isNotEmpty && (selectedAddress != null || pickupMethod == 1)
-                      ? () {}
+                  onPressed: state.cartMap.isNotEmpty &&
+                          (selectedAddress != null || pickupMethod == 1)
+                      ? () {
+                          BlocProvider.of<CartBloc>(context).add(
+                            ConfirmOrder(
+                              addressLineOne: pickupMethod == 0
+                                  ? selectedAddress!
+                                  : "Strada Paris 18",
+                              totalPrice: totalPrice +
+                                  tips +
+                                  (pickupMethod == 0 ? 4 : 0),
+                              isPickup: pickupMethod == 1,
+                            ),
+                          );
+                          NativeDialog(
+                                  title: "Order Confirmed",
+                                  content:
+                                      "Thanks for choosing Slice2You! Our chefs are already preparing your delicious pizzas! ",
+                                  firstButtonText: "Ok")
+                              .showOSDialog(context);
+                        }
                       : null,
                   text: "Confirm Order",
                 ),
@@ -66,6 +91,62 @@ class _CartScreenState extends State<CartScreen> {
         ),
       );
     });
+  }
+
+  Widget _tipsSection() {
+    Map<String, int> tipsMapping = {
+      "No tips": 0,
+      "2.00 \$": 2,
+      "5.00 \$": 5,
+      "10.00 \$": 10,
+    };
+    return RoundedContainer(
+      hasAllCornersRounded: true,
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                "Do we deserve a tip?",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (String element in tipsMapping.keys)
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      tips = tipsMapping[element]!;
+                    }),
+                    child: RoundedContainer(
+                      hasAllCornersRounded: true,
+                      color: tips == tipsMapping[element]
+                          ? AppColors.primary
+                          : AppColors.surface,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Text(
+                          element,
+                          style:
+                              Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    color: tips == tipsMapping[element]
+                                        ? AppColors.white
+                                        : AppColors.black,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _pickUpAddressSection() {
@@ -187,22 +268,25 @@ class _CartScreenState extends State<CartScreen> {
   Widget _addMoreSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: Row(children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Icon(
-            Icons.add_circle_outlined,
-            color: AppColors.primary,
+      child: GestureDetector(
+        onTap: () => BlocProvider.of<RootPageBloc>(context).add(const ChangePage(0)),
+        child: Row(children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(
+              Icons.add_circle_outlined,
+              color: AppColors.primary,
+            ),
           ),
-        ),
-        Text(
-          "Add more",
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: AppColors.primary),
-        ),
-      ]),
+          Text(
+            "Add more",
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(color: AppColors.primary),
+          ),
+        ]),
+      ),
     );
   }
 

@@ -36,30 +36,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
-        builder: (context, state) => RoundedContainer(
-                child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Text(
-                    "Signed in as: ${state.user.username}",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
+      builder: (context, state) => RoundedContainer(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  "Signed in as: ${state.user.username}",
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                _profilePicturePicker(),
-                _textForm(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: DefaultButton(
-                    text: "Update Profile",
-                    onPressed:
-                        isButtonEnabled ? () => _onDonePressed(state) : null,
-                    isLoading: state is UserLoading,
-                  ),
-                )
-              ]),
-            )));
+              ),
+              _profilePicturePicker(),
+              _textForm(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: DefaultButton(
+                  text: "Update Profile",
+                  onPressed:
+                      isButtonEnabled ? () => _onDonePressed(state) : null,
+                  isLoading: state is UserLoading,
+                ),
+              )
+            ]),
+          ),
+        ),
+      ),
+    );
   }
 
   void _setFields(User user) {
