@@ -6,7 +6,6 @@ import 'package:pizza_app/data/repository/orders/order_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository_impl.dart';
-import 'package:pizza_app/features/admin/home/admin_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
@@ -15,7 +14,7 @@ import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
 import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
 import 'package:pizza_app/features/user/order_history/bloc/history_bloc.dart';
 import 'package:pizza_app/features/user/page_bloc/root_page_bloc.dart';
-import 'package:pizza_app/features/user/user_root_screen.dart';
+import 'package:pizza_app/features/common/welcome_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +58,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Slice2You',
           theme: ThemeBuilder.getThemeData(),
-          home: MyApp.admin ? const HomePage() : const UserRootScreen(),
+          home: const WelcomeScreen(),
         ),
       ),
     );
