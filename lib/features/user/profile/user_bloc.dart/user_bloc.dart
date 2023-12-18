@@ -12,26 +12,14 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   User user;
   UserBloc(this.user)
-      : super(const InitialUserState(
-            user: User(
-                firstName: "Emil",
-                lastName: "Yung",
-                email: "emil_yung@gmail.com",
-                username: "eyung",
-                phoneNumber: "+40758978965"))) {
+      : super(InitialUserState(
+            user: user)) {
     on<UpdateUser>(_updateUser);
     on<FetchUser>(_fetchUser);
   }
 
   FutureOr<void> _fetchUser(FetchUser event, Emitter<UserState> emit) async {
     emit(UserLoading(user: user));
-
-    user = const User(
-        firstName: "Emil",
-        lastName: "Yung",
-        email: "emil_yung@gmail.com",
-        username: "eyung",
-        phoneNumber: "+40758978965");
 
     emit(UserLoaded(user: user));
   }
@@ -46,6 +34,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         username: event.username,
         phoneNumber: event.phoneNumber,
         profilePicture: event.profilePicture);
+
+    await Future.delayed(Duration(seconds: 1));
 
     emit(UserLoaded(user: user));
   }

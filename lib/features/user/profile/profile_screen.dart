@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
+import 'package:pizza_app/common/widgets/native_dialog.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/user.dart';
@@ -20,6 +21,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isButtonEnabled = true;
+  bool mustListen = false;
 
   File? _profilePicture;
   final TextEditingController _firstNameController = TextEditingController();
@@ -35,7 +37,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocConsumer<UserBloc, UserState>(
+        listener: (context, state){
+          if(state is UserLoaded && mustListen == true){
+            NativeDialog(
+                title: "Changes Saved",
+                content: "Your profile info was updated",
+                firstButtonText: "Ok")
+                .showOSDialog(context);
+            setState(() {
+              mustListen = false;
+            });
+          }
+        },
       builder: (context, state) => RoundedContainer(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -170,6 +184,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         username: state.user.username,
         phoneNumber: state.user.phoneNumber,
         profilePicture: _profilePicture));
+    setState(() {
+      mustListen = true;
+    });
   }
 
   bool _validateForm() {

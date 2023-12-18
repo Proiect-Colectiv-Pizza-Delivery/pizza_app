@@ -41,6 +41,7 @@ class _UserRootScreenState extends State<UserRootScreen> {
       builder: (context, state) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primary,
+          automaticallyImplyLeading: false,
           title: const Row(
             children: [
               Text("Slice2You"),

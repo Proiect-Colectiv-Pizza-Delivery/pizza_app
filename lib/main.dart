@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
   final PizzaRepository _pizzaRepository = PizzaRepositoryImpl();
   final IngredientRepository _ingredientRepository = IngredientRepositoryImpl();
   final User _user = const User(
-      firstName: "Emil",
-      lastName: "Yung",
-      email: "emil_yung@gmail.com",
-      username: "eyung",
+      firstName: "Mihai",
+      lastName: "Gheorghe",
+      email: "mihai02ghe@gmail.com",
+      username: "MihaiG09",
       phoneNumber: "+40758978965");
   final OrderRepository _orderRepository = OrderRepositoryImpl();
 
