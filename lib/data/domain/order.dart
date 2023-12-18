@@ -26,7 +26,7 @@ class Order {
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
           totalPrice: 100,
-          date: DateTime.now(),
+          date: DateTime.now().subtract(const Duration(hours: 320, minutes: 30)),
           isPickUp: false),
       Order(
           id: 1,
@@ -34,7 +34,7 @@ class Order {
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
           totalPrice: 120,
-          date: DateTime.now(),
+          date: DateTime.now().subtract(const Duration(hours: 450, minutes: 40)),
           isPickUp: true),
       Order(
           id: 2,
@@ -42,7 +42,7 @@ class Order {
           addressLineOne: "addressLineOne",
           addressLineTwo: "addressLineTwo",
           totalPrice: 130,
-          date: DateTime.now(),
+          date: DateTime.now().subtract(const Duration(hours: 570, minutes: 20)),
           isPickUp: false),
     ];
   }
