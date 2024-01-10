@@ -4,6 +4,7 @@ import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/features/admin/home/admin_home_page.dart';
+import 'package:pizza_app/features/user/user_root_screen.dart';
 
 import '../../../common/theme/colors.dart';
 
@@ -91,9 +92,17 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(bottom: 32),
               child: DefaultButton(
                 text: "Login",
-                onPressed: _isLoginButtonEnabled ? () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
-                } : null,
+                onPressed: _isLoginButtonEnabled
+                    ? () {
+                        if(_emailController.text.contains("admin")) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                        } else {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const UserRootScreen()));
+                        }
+                      }
+                    : null,
               ),
             ),
           ],
@@ -126,8 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: AppColors.primary,
                 ),
-            recognizer: TapGestureRecognizer()..onTap = () {
-            },
+            recognizer: TapGestureRecognizer()..onTap = () {},
           ),
         ],
       ),

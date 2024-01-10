@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:pizza_app/data/domain/ingredient.dart';
 
@@ -7,6 +9,7 @@ class Pizza extends Equatable {
   final String name;
   final List<Ingredient> ingredients;
   final bool available;
+  final String? imagePath;
 
   const Pizza({
     required this.id,
@@ -14,6 +17,7 @@ class Pizza extends Equatable {
     required this.name,
     required this.ingredients,
     required this.available,
+    this.imagePath
   });
 
   static List<Pizza> getPopulation() {
@@ -24,31 +28,38 @@ class Pizza extends Equatable {
           price: 30,
           name: "Quattro Formaggi",
           ingredients: [ingrs[4], ingrs[6], ...ingrs.sublist(0, 4)],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"
+      ),
       Pizza(
           id: 2,
           price: 32,
           name: "Diavola",
           ingredients: [ingrs[4], ...ingrs.sublist(6, 11)],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"
+      ),
       Pizza(
           id: 3,
           price: 22,
           name: "Margherita",
           ingredients: [ingrs[12], ...ingrs.sublist(6, 8), ingrs[1], ingrs[11]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 4,
           price: 29,
           name: "Hawaiian",
           ingredients: [ingrs[4], ingrs[6], ingrs[13], ingrs[14], ingrs[1]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 5,
           price: 30,
           name: "Spicy Hawaiian",
           ingredients: [ingrs[4], ingrs[6], ingrs[13], ingrs[9], ingrs[1]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 6,
           price: 30,
@@ -61,25 +72,29 @@ class Pizza extends Equatable {
             ingrs[8],
             ingrs[1]
           ],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 7,
           price: 27,
           name: "Pizza Bianca",
           ingredients: [ingrs[15], ingrs[1], ingrs[3], ingrs[16]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 8,
           price: 28,
           name: "Veggie Supreme",
           ingredients: [ingrs[4], ...ingrs.sublist(18, 22), ingrs[17]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 9,
           price: 26,
           name: "Goat Cheese Pizza",
           ingredients: [ingrs[4], ingrs[6], ingrs[19], ingrs[2], ingrs[11]],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 10,
           price: 27,
@@ -92,7 +107,8 @@ class Pizza extends Equatable {
             ingrs[23],
             ingrs[11]
           ],
-          available: true),
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 11,
           price: 26,
@@ -105,7 +121,8 @@ class Pizza extends Equatable {
             ingrs[25],
             ingrs[24]
           ],
-          available: true)
+          available: true,
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg")
     ];
   }
 
