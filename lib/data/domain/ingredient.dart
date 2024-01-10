@@ -70,18 +70,17 @@ class Ingredient extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'allergens': allergens,
-      'quantity': quantity,
+      'allergens': allergens.join(", "),
+      'stock': quantity,
     };
   }
 
   factory Ingredient.fromMap(Map<String, dynamic> map) {
     return Ingredient(
-      id: map['id'],
-      name: map['name'].toString(),
-      quantity: map['description'],
-      allergens: map['allergens'],
-    );
+        id: map['id'],
+        name: map['name'].toString(),
+        allergens: map['allergens'].toString().split(', '),
+        quantity: map['stock']);
   }
 
   String allergensString() {

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:pizza_app/common/remote/api_service.dart';
 import 'package:pizza_app/common/remote/pizza_service.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/data/domain/pizza_create_request.dart';
