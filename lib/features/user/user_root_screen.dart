@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/features/user/cart/cart_screen.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
+import 'package:pizza_app/features/user/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_app/features/user/order_history/bloc/history_bloc.dart';
 import 'package:pizza_app/features/user/page_bloc/root_page_bloc.dart';
@@ -19,7 +20,8 @@ class _UserRootScreenState extends State<UserRootScreen> {
   final List<Widget> _pages = [
     const UserHomePage(),
     const CartScreen(),
-    const OrderHistoryScreen()
+    const OrderHistoryScreen(),
+    const ProfileScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -39,6 +41,7 @@ class _UserRootScreenState extends State<UserRootScreen> {
       builder: (context, state) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primary,
+          automaticallyImplyLeading: false,
           title: const Row(
             children: [
               Text("Slice2You"),

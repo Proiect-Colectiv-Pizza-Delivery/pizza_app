@@ -97,15 +97,15 @@ class AddSection extends StatefulWidget {
 class _AddSectionState extends State<AddSection> {
   int _count = 1;
 
-  void _increaseCount(){
+  void _increaseCount() {
     setState(() {
       _count += 1;
     });
   }
 
-  void _decreaseCount(){
+  void _decreaseCount() {
     setState(() {
-      if(_count >= 2) {
+      if (_count >= 2) {
         _count -= 1;
       }
     });
@@ -136,18 +136,35 @@ class _AddSectionState extends State<AddSection> {
             ),
             child: Row(
               children: [
-                IconButton(onPressed: _decreaseCount, icon: const Icon(Icons.remove)),
-                Text(_count.toString(), style: Theme.of(context).textTheme.labelLarge,),
-                IconButton(onPressed: _increaseCount, icon: const Icon(Icons.add)),
+                IconButton(
+                    onPressed: _decreaseCount, icon: const Icon(Icons.remove)),
+                Text(
+                  _count.toString(),
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                IconButton(
+                    onPressed: _increaseCount, icon: const Icon(Icons.add)),
               ],
             ),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 32),
-              child: DefaultButton(onPressed: () {
-                BlocProvider.of<CartBloc>(context).add(AddToCart(widget.pizza, _count));
-              }, text: "Add"),
+              child: BlocConsumer<CartBloc, CartState>(
+                listener: (context, state) {
+                  if (state is CartLoaded) {
+                    Navigator.pop(context);
+                  }
+                },
+                builder: (BuildContext context, CartState state) =>
+                    DefaultButton(
+                        isLoading: state is CartLoading,
+                        onPressed: () {
+                          BlocProvider.of<CartBloc>(context)
+                              .add(AddToCart(widget.pizza, _count));
+                        },
+                        text: "Add"),
+              ),
             ),
           ),
         ],

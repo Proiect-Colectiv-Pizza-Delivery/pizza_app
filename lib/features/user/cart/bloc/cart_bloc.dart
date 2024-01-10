@@ -19,13 +19,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<ConfirmOrder>(_onConfirmOrder);
   }
 
-  FutureOr<void> _onAddToCart(AddToCart event, Emitter<CartState> emit) {
+  Future<FutureOr<void>> _onAddToCart(
+      AddToCart event, Emitter<CartState> emit) async {
+    emit(CartLoading(state.cartMap, state.address));
     Map<Pizza, int> currentCart = Map.from(state.cartMap);
     if (currentCart.containsKey(event.pizza)) {
       currentCart[event.pizza] = currentCart[event.pizza]! + event.quantity;
     } else {
       currentCart[event.pizza] = event.quantity;
     }
+    await Future.delayed(const Duration(milliseconds: 500));
     emit(CartLoaded(currentCart, state.address));
   }
 
