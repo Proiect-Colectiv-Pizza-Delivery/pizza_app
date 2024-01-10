@@ -13,7 +13,7 @@ class Ingredient extends Equatable {
       required this.quantity});
 
   static List<Ingredient> getPopulation() {
-    return [
+    return const [
       Ingredient(
           id: 0, name: "Gorgonzola", allergens: ["lactose"], quantity: 100),
       Ingredient(
