@@ -20,9 +20,7 @@ class OrderPage extends StatelessWidget {
         ),
       ),
       backgroundColor: AppColors.white,
-      body: RoundedContainer(
-        color: AppColors.surface,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -57,7 +55,6 @@ class OrderPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 
