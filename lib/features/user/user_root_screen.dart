@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/theme/colors.dart';
+import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/features/user/cart/cart_screen.dart';
 import 'package:pizza_app/features/user/home/user_home.dart';
 import 'package:pizza_app/features/user/profile/profile_screen.dart';
@@ -48,7 +49,10 @@ class _UserRootScreenState extends State<UserRootScreen> {
             ],
           ),
         ),
-        body: _pages[state.index],
+        backgroundColor: AppColors.primary,
+        body: RoundedContainer(
+          child: _pages[state.index],
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(

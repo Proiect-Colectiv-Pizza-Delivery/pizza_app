@@ -149,6 +149,24 @@ class Pizza extends Equatable {
     return ingredients.map((e) => e.name).join(", ");
   }
 
+  Pizza copyWith({
+    int? id,
+    int? price,
+    String? name,
+    List<Ingredient>? ingredients,
+    bool? available,
+    String? imagePath,
+  }) {
+    return Pizza(
+      id: id ?? this.id,
+      price: price ?? this.price,
+      name: name ?? this.name,
+      ingredients: ingredients ?? this.ingredients,
+      available: available ?? this.available,
+      imagePath: imagePath ?? this.imagePath,
+    );
+  }
+
   @override
   List<Object?> get props => [id, name, price, ingredients, available];
 }
