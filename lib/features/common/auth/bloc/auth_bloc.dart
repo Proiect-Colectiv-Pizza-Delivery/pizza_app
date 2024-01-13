@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc(this.authRepository) : super(Unauthenticated()) {
     on<LogIn>(_onLogIn);
+    on<SendAuthInformation>(_onSendAuthInformation);
   }
 
   FutureOr<void> _onLogIn(LogIn event, Emitter<AuthState> emit) async {
@@ -30,6 +31,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Authenticated(user));
     } else{
       emit(Unauthenticated());
+    }
+  }
+
+
+  FutureOr<void> _onSendAuthInformation(SendAuthInformation event, Emitter<AuthState> emit) {
+    if(state is Authenticated){
+      authRepository.sendAccountInfo((state as Authenticated).account);
     }
   }
 }

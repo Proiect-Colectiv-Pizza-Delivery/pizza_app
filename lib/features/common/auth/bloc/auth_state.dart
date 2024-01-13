@@ -5,9 +5,9 @@ abstract class AuthState extends Equatable {
 }
 
 class Authenticated extends AuthState {
-  final GoogleSignInAccount user;
+  final GoogleSignInAccount account;
 
-  const Authenticated(this.user);
+  const Authenticated(this.account);
 
   @override
   List<Object> get props => [];

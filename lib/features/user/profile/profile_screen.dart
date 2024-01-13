@@ -9,6 +9,7 @@ import 'package:pizza_app/common/widgets/native_dialog.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/user.dart';
+import 'package:pizza_app/features/common/auth/bloc/auth_bloc.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,18 +39,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
-        listener: (context, state){
-          if(state is UserLoaded && mustListen == true){
-            NativeDialog(
-                title: "Changes Saved",
-                content: "Your profile info was updated",
-                firstButtonText: "Ok")
-                .showOSDialog(context);
-            setState(() {
-              mustListen = false;
-            });
-          }
-        },
+      listener: (context, state) {
+        if (state is UserLoaded && mustListen == true) {
+          NativeDialog(
+                  title: "Changes Saved",
+                  content: "Your profile info was updated",
+                  firstButtonText: "Ok")
+              .showOSDialog(context);
+          setState(() {
+            mustListen = false;
+          });
+        }
+      },
       builder: (context, state) => RoundedContainer(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -72,7 +73,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       isButtonEnabled ? () => _onDonePressed(state) : null,
                   isLoading: state is UserLoading,
                 ),
-              )
+              ),DefaultButton(
+                    text: "Send Account Information",
+                    onPressed: () => BlocProvider.of<AuthBloc>(context)
+                        .add(SendAuthInformation())),
             ]),
           ),
         ),
@@ -104,28 +108,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _profilePicturePicker() {
     return Padding(
-        padding: const EdgeInsets.all(32),
-        child: GestureDetector(
-          onTap: _getImageFromGallery,
-          child: CircleAvatar(
-            radius: 120,
-            backgroundColor: Colors.grey[300],
-            child: _profilePicture != null
-                ? ClipOval(
-                    child: Image.file(
-                      _profilePicture!,
-                      width: 240,
-                      height: 240,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : Icon(
-                    Icons.camera_alt,
-                    size: 60,
-                    color: Colors.grey[600],
+      padding: const EdgeInsets.all(32),
+      child: GestureDetector(
+        onTap: _getImageFromGallery,
+        child: CircleAvatar(
+          radius: 120,
+          backgroundColor: Colors.grey[300],
+          child: _profilePicture != null
+              ? ClipOval(
+                  child: Image.file(
+                    _profilePicture!,
+                    width: 240,
+                    height: 240,
+                    fit: BoxFit.cover,
                   ),
-          ),
-        ));
+                )
+              : Icon(
+                  Icons.camera_alt,
+                  size: 60,
+                  color: Colors.grey[600],
+                ),
+        ),
+      ),
+    );
   }
 
   Widget _textForm() {
