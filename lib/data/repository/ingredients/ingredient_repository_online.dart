@@ -29,12 +29,12 @@ class IngredientRepositoryOnline extends IngredientRepository {
       quantity: request.quantity,
     );
 
-    Ingredient returned = await _ingredientService.addIngredient(code);
+    Ingredient newIngredient = await _ingredientService.addIngredient(code);
 
-    _ingredients.insert(0, returned);
+    _ingredients.insert(0, newIngredient);
     latestId++;
 
-    return code;
+    return newIngredient;
   }
 
   @override

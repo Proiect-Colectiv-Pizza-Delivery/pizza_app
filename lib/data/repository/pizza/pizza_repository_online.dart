@@ -18,8 +18,6 @@ class PizzaRepositoryOnline extends PizzaRepository {
 
   @override
   Future<Pizza> addPizza(PizzaCreateRequest request) async {
-    await Future.delayed(const Duration(seconds: 1));
-
     Pizza code = Pizza(
       id: latestId,
       name: request.name,
@@ -28,15 +26,17 @@ class PizzaRepositoryOnline extends PizzaRepository {
       available: true,
     );
 
-    _pizzas!.insert(0, code);
+    Pizza newPizza = await _pizzaService.addPizza(code);
+
+    _pizzas!.insert(0, newPizza);
     latestId++;
 
-    return code;
+    return newPizza;
   }
 
   @override
   Future<void> deletePizza(Pizza pizza) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await _pizzaService.deletePizza(pizza.id);
     _pizzas!.remove(pizza);
   }
 
@@ -59,7 +59,8 @@ class PizzaRepositoryOnline extends PizzaRepository {
 
   @override
   Future<Pizza?> updatePizza(Pizza pizza) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await _pizzaService.updatePizza(
+        _pizzas!.firstWhere((element) => element.id == pizza.id), pizza);
 
     await initRepoIfNeeded();
     for (int i = 0; i < _pizzas!.length; i++) {

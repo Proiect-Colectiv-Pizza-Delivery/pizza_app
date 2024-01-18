@@ -8,6 +8,7 @@ import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository_online.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
@@ -24,7 +25,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool admin = false;
-  final PizzaRepository _pizzaRepository = PizzaRepositoryImpl();
+  final PizzaRepository _pizzaRepository = PizzaRepositoryOnline();
   final IngredientRepository _ingredientRepository =
       IngredientRepositoryOnline();
   final User _user = const User(

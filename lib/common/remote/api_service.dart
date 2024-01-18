@@ -30,5 +30,7 @@ abstract class ApiService {
   }
 
   // TODO: Make the error handler actually handle unintercepted errors
-  void errorHandler(DioException e, ErrorInterceptorHandler handler) async {}
+  void errorHandler(DioException e, ErrorInterceptorHandler handler) async {
+    print(e);
+  }
 }

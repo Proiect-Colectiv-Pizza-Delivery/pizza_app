@@ -25,7 +25,7 @@ class PizzaBloc extends Bloc<PizzaEvent, PizzaState> {
     await _pizzaRepository.databaseInitialized.future;
 
     await _pizzaRepository.addPizza(PizzaCreateRequest(
-      price: int.parse(event.price),
+      price: double.parse(event.price),
       name: event.name,
       ingredients: event.ingredients,
     ));
@@ -44,7 +44,7 @@ class PizzaBloc extends Bloc<PizzaEvent, PizzaState> {
     await _pizzaRepository.updatePizza(
       Pizza(
           id: event.pizzaId,
-          price: int.parse(event.price),
+          price: double.parse(event.price),
           name: event.name,
           ingredients: event.ingredients,
           available: true),
