@@ -1,12 +1,10 @@
 import 'package:pizza_app/common/theme/theme_builder.dart';
 import 'package:pizza_app/data/domain/user.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
-import 'package:pizza_app/data/repository/ingredients/ingredient_repository_impl.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository_online.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
-import 'package:pizza_app/data/repository/pizza/pizza_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository_online.dart';
@@ -26,9 +24,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool admin = false;
-  // TODO: change back to online pizza
-  final PizzaRepository _pizzaRepository = PizzaRepositoryImpl();
-  final IngredientRepository _ingredientRepository = IngredientRepositoryImpl();
+  final PizzaRepository _pizzaRepository = PizzaRepositoryOnline();
+  final IngredientRepository _ingredientRepository =
+      IngredientRepositoryOnline();
   final User _user = const User(
       firstName: "Mihai",
       lastName: "Gheorghe",

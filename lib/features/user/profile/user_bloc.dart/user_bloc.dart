@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,9 +10,7 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   User user;
-  UserBloc(this.user)
-      : super(InitialUserState(
-            user: user)) {
+  UserBloc(this.user) : super(InitialUserState(user: user)) {
     on<UpdateUser>(_updateUser);
     on<FetchUser>(_fetchUser);
   }
@@ -35,7 +32,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         phoneNumber: event.phoneNumber,
         profilePicture: event.profilePicture);
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     emit(UserLoaded(user: user));
   }

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
@@ -38,18 +37,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
-        listener: (context, state){
-          if(state is UserLoaded && mustListen == true){
-            NativeDialog(
-                title: "Changes Saved",
-                content: "Your profile info was updated",
-                firstButtonText: "Ok")
-                .showOSDialog(context);
-            setState(() {
-              mustListen = false;
-            });
-          }
-        },
+      listener: (context, state) {
+        if (state is UserLoaded && mustListen == true) {
+          NativeDialog(
+                  title: "Changes Saved",
+                  content: "Your profile info was updated",
+                  firstButtonText: "Ok")
+              .showOSDialog(context);
+          setState(() {
+            mustListen = false;
+          });
+        }
+      },
       builder: (context, state) => RoundedContainer(
         child: Padding(
           padding: const EdgeInsets.all(32),

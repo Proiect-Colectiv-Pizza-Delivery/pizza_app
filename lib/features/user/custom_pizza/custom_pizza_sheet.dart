@@ -41,7 +41,7 @@ class CustomPizzaSheet extends StatefulWidget {
 }
 
 class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
-  Pizza? pizza = null;
+  Pizza? pizza;
   bool initialized = false;
   List<Ingredient> ingredients = [];
 
