@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:core';
 
 import 'package:pizza_app/data/domain/pizza.dart';
@@ -23,8 +22,7 @@ class PizzaService extends ApiService {
           .toList()
     };
 
-    final responseIngr =
-        await dio.post("$pizzaUrl/updateIngredients", data: data);
+    await dio.post("$pizzaUrl/updateIngredients", data: data);
 
     responseData.putIfAbsent("ingredients", () => []);
     Pizza newPizza = Pizza.fromMap(responseData);
@@ -48,8 +46,6 @@ class PizzaService extends ApiService {
     Map<String, dynamic> data = pizza.toMap();
     data.putIfAbsent("id", () => pizza.id);
 
-    print(data);
-
     final response = await dio.put("$pizzaUrl/${pizza.id}", data: data);
 
     // remove all old ingredients
@@ -57,8 +53,6 @@ class PizzaService extends ApiService {
       "pizzaId": pizza.id,
       "ingredientsList": oldPizza.ingredients.map((e) => e.id).toList()
     };
-
-    print(data);
 
     await dio.delete('$pizzaUrl/removeIngredients', data: data);
 
@@ -69,8 +63,6 @@ class PizzaService extends ApiService {
           .map((i) => {"ingredientId": i.id, "quantity": 1})
           .toList()
     };
-
-    print(data);
 
     await dio.post("$pizzaUrl/updateIngredients", data: data);
 

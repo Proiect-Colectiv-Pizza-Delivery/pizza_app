@@ -11,7 +11,6 @@ import 'package:pizza_app/data/repository/ingredients/ingredient_repository_onli
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
-import 'package:pizza_app/data/repository/pizza/pizza_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/data/repository/secure_local_storage/secure_local_storage.dart';

@@ -17,6 +17,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<RemoveFromCart>(_onRemoveFromCart);
     on<AddAddress>(_onAddAddress);
     on<ConfirmOrder>(_onConfirmOrder);
+    on<SubstituteCart>(_onSubstituteCart);
   }
 
   Future<FutureOr<void>> _onAddToCart(
@@ -42,6 +43,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
     }
     emit(CartLoaded(currentCart, state.address));
+  }
+
+  FutureOr<void> _onSubstituteCart(
+      SubstituteCart event, Emitter<CartState> emit) {
+    emit(CartLoading(state.cartMap, state.address));
+
+    emit(CartLoaded(event.pizzas, event.address));
   }
 
   FutureOr<void> _onAddAddress(AddAddress event, Emitter<CartState> emit) {

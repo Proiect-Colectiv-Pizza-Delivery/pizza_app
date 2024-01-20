@@ -34,6 +34,15 @@ class RemoveFromCart extends CartEvent {
   List<Object?> get props => [pizza, quantity];
 }
 
+class SubstituteCart extends CartEvent {
+  final Map<Pizza, int> pizzas;
+  final Map<String, String> address;
+
+  const SubstituteCart(this.pizzas, this.address);
+  @override
+  List<Object?> get props => [pizzas, address];
+}
+
 class ConfirmOrder extends CartEvent {
   final bool isPickup;
   final String addressLineOne;
@@ -43,7 +52,7 @@ class ConfirmOrder extends CartEvent {
   const ConfirmOrder(
       {this.isPickup = true,
       required this.addressLineOne,
-        required this.totalPrice,
+      required this.totalPrice,
       this.addressLineTwo});
 
   @override
