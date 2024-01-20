@@ -127,7 +127,7 @@ class OrderPage extends StatelessWidget {
 
   Widget _priceSection(
       BuildContext context, Map<Pizza, int> pizzaMapping, totalPrice) {
-    int pizzaPrice = 0;
+    double pizzaPrice = 0;
     pizzaMapping.forEach((key, value) => pizzaPrice += value * key.price);
     return RoundedContainer(
       color: AppColors.white,

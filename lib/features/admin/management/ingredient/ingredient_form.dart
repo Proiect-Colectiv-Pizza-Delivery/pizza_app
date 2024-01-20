@@ -74,6 +74,7 @@ class _IngredientFormState extends State<IngredientForm> {
           controller: _nameController,
           validator: Validator.validateEmpty,
           labelText: "Ingredient Name",
+          enableSpaceKey: true,
         ),
         Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
