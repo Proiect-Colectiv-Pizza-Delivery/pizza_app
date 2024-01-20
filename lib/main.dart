@@ -7,14 +7,15 @@ import 'package:pizza_app/common/theme/theme_builder.dart';
 import 'package:pizza_app/data/auth/auth_repository.dart';
 import 'package:pizza_app/data/domain/user.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository_impl.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository_online.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository_impl.dart';
 import 'package:pizza_app/data/repository/secure_local_storage/secure_local_storage.dart';
-import 'package:pizza_app/data/repository/pizza/pizza_repository_online.dart';
 import 'package:pizza_app/features/admin/home/admin_home_page.dart';
 import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
 import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
@@ -34,12 +35,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static bool admin = false;
   final Dio _dio = Dio();
   late final AuthInterceptor authInterceptor = AuthInterceptor(_dio, SecureLocalStorage(), AuthService(), () { });
-  late final PizzaRepository _pizzaRepository = PizzaRepositoryOnline(PizzaService(_dio, authInterceptor));
-  late final IngredientRepository _ingredientRepository =
-      IngredientRepositoryOnline(IngredientService(_dio, authInterceptor));
+  late final PizzaRepository _pizzaRepository = PizzaRepositoryImpl();
+  late final IngredientRepository _ingredientRepository = IngredientRepositoryImpl();
   final User _user = const User(
       userName: "mihaig09",
       firstName: "Mihai",
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
       AuthRepository(SecureLocalStorage(), AuthService());
 
   MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(

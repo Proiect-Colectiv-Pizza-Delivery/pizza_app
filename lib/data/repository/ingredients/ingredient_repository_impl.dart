@@ -9,7 +9,7 @@ class IngredientRepositoryImpl extends IngredientRepository {
   int latestId = 11;
 
   IngredientRepositoryImpl() {
-    _ingredients = Ingredient.getPopulation();
+    _ingredients = List.of(Ingredient.getPopulation(),);
     super.databaseInitialized.complete();
   }
 

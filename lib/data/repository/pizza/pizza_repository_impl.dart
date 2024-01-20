@@ -9,7 +9,7 @@ class PizzaRepositoryImpl extends PizzaRepository {
   int latestId = 11;
 
   PizzaRepositoryImpl() {
-    _pizzas = Pizza.getPopulation();
+    _pizzas = List.of(Pizza.getPopulation());
     super.databaseInitialized.complete();
   }
 
