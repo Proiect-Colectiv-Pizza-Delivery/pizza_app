@@ -18,7 +18,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   FutureOr<void> _fetchUser(FetchUser event, Emitter<UserState> emit) async {
     emit(UserLoading(user: user));
 
-    emit(UserLoaded(user: user));
+    if(event.user != null){
+      emit(UserLoaded(user: event.user!));
+    } else {
+      emit(UserLoaded(user: user));
+    }
   }
 
   FutureOr<void> _updateUser(UpdateUser event, Emitter<UserState> emit) async {

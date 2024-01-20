@@ -90,6 +90,7 @@ class MyApp extends StatelessWidget {
               BlocProvider.of<PizzaBloc>(context).add(const FetchPizzas());
               BlocProvider.of<HistoryBloc>(context).add(const FetchHistory());
               BlocProvider.of<IngredientBloc>(context).add(const FetchIngredients());
+              BlocProvider.of<UserBloc>(context).add(FetchUser(state.account));
             }
           },),
         ),

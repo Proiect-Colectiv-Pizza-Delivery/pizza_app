@@ -8,7 +8,8 @@ class UserEvent extends Equatable {
 }
 
 class FetchUser extends UserEvent {
-  const FetchUser();
+  final User? user;
+  const FetchUser(this.user);
 
   @override
   List<Object?> get props => [];
