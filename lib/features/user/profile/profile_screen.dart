@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
-import 'package:pizza_app/common/widgets/native_dialog.dart';
+import 'package:pizza_app/common/widgets/dialogs.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/user.dart';
+import 'package:pizza_app/features/common/auth/login/bloc/auth_bloc.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -57,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  "Signed in as: ${state.user.username}",
+                  "Signed in as: ${state.user.firstName} ${state.user.lastName}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
@@ -71,7 +72,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       isButtonEnabled ? () => _onDonePressed(state) : null,
                   isLoading: state is UserLoading,
                 ),
-              )
+              ),DefaultButton(
+                    text: "Send Account Information",
+                    onPressed: () => BlocProvider.of<AuthBloc>(context)
+                        .add(SendAuthInformation())),
             ]),
           ),
         ),
@@ -103,28 +107,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _profilePicturePicker() {
     return Padding(
-        padding: const EdgeInsets.all(32),
-        child: GestureDetector(
-          onTap: _getImageFromGallery,
-          child: CircleAvatar(
-            radius: 120,
-            backgroundColor: Colors.grey[300],
-            child: _profilePicture != null
-                ? ClipOval(
-                    child: Image.file(
-                      _profilePicture!,
-                      width: 240,
-                      height: 240,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : Icon(
-                    Icons.camera_alt,
-                    size: 60,
-                    color: Colors.grey[600],
+      padding: const EdgeInsets.all(32),
+      child: GestureDetector(
+        onTap: _getImageFromGallery,
+        child: CircleAvatar(
+          radius: 120,
+          backgroundColor: Colors.grey[300],
+          child: _profilePicture != null
+              ? ClipOval(
+                  child: Image.file(
+                    _profilePicture!,
+                    width: 240,
+                    height: 240,
+                    fit: BoxFit.cover,
                   ),
-          ),
-        ));
+                )
+              : Icon(
+                  Icons.camera_alt,
+                  size: 60,
+                  color: Colors.grey[600],
+                ),
+        ),
+      ),
+    );
   }
 
   Widget _textForm() {
@@ -180,9 +185,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         firstName: _firstNameController.text,
         lastName: _lastNameController.text,
         email: _emailController.text,
-        username: state.user.username,
+        password: "",
         phoneNumber: state.user.phoneNumber,
-        profilePicture: _profilePicture));
+        profilePicture: _profilePicture, username: state.user.userName));
     setState(() {
       mustListen = true;
     });

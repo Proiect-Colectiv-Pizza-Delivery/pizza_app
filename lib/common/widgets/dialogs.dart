@@ -184,3 +184,23 @@ class NativeDialog {
         isLoadingDialog: isLoadingDialog ?? this.isLoadingDialog,
       );
 }
+
+class GenericDialogs {
+  static NativeDialog somethingWrong(BuildContext context) => NativeDialog(
+      title: "Oops",
+      firstButtonText: "Ok",
+      content: "Something went wrong! Please try again later!");
+
+  static NativeDialog timeOut(BuildContext context) => NativeDialog(
+      title: "Too many attempts!",
+      firstButtonText: "Ok",
+      content:
+          "You've exceeded the number of attempts. Please retry after a while or contact us!");
+
+  static NativeDialog networkError(BuildContext context) => NativeDialog(
+        title: "No Internet Connection",
+        content:
+            "Please check your internet connection and try again or contact our support!",
+        firstButtonText: "Ok",
+      );
+}

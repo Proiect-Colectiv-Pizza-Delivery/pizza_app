@@ -17,8 +17,9 @@ class FetchUser extends UserEvent {
 class UpdateUser extends UserEvent {
   final String firstName;
   final String lastName;
-  final String email;
   final String username;
+  final String email;
+  final String password;
   final String phoneNumber;
   final File? profilePicture;
 
@@ -26,11 +27,12 @@ class UpdateUser extends UserEvent {
       {required this.firstName,
       required this.lastName,
       required this.email,
-      required this.username,
+      required this.password,
       required this.phoneNumber,
+        required this.username,
       this.profilePicture});
 
   @override
   List<Object?> get props =>
-      [firstName, lastName, email, username, phoneNumber, profilePicture];
+      [firstName, lastName, email, password, phoneNumber, profilePicture];
 }

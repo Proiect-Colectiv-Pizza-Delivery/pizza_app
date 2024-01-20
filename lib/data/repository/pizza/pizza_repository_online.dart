@@ -7,12 +7,11 @@ import 'package:pizza_app/data/domain/pizza_create_request.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 
 class PizzaRepositoryOnline extends PizzaRepository {
-  final PizzaService _pizzaService = PizzaService(Dio());
+  final PizzaService _pizzaService;
   late List<Pizza>? _pizzas;
   int latestId = 11;
 
-  PizzaRepositoryOnline() {
-    getPizzas();
+  PizzaRepositoryOnline(this._pizzaService) {
     super.databaseInitialized.complete();
   }
 

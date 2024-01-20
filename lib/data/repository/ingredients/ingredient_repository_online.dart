@@ -8,15 +8,14 @@ import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart
 
 class IngredientRepositoryOnline extends IngredientRepository {
   late List<Ingredient> _ingredients;
-  final IngredientService _ingredientService = IngredientService(Dio());
+  final IngredientService _ingredientService;
   int latestId = 11;
 
-  IngredientRepositoryOnline() {
+  IngredientRepositoryOnline(this._ingredientService) {
     initialize();
   }
 
   Future<void> initialize() async {
-    await getIngredients();
     super.databaseInitialized.complete();
   }
 

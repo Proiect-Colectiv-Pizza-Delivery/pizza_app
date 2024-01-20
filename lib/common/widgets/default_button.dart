@@ -7,6 +7,7 @@ class DefaultButton extends StatefulWidget {
   final bool isLoading;
   final Color? color;
   final TextStyle? textStyle;
+  final Widget? icon;
 
   const DefaultButton({
     Key? key,
@@ -15,6 +16,7 @@ class DefaultButton extends StatefulWidget {
     this.isLoading = false,
     this.color,
     this.textStyle,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -40,15 +42,26 @@ class _DefaultButtonState extends State<DefaultButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: widget.onPressed != null ? _onPressed(context) : null,
-      style: widget.color != null
-          ? Theme.of(context).elevatedButtonTheme.style?.copyWith(
-        backgroundColor: MaterialStatePropertyAll(widget.color),
-      )
-          : null,
-      child: _setUpButtonChild(),
-    );
+    return widget.icon == null
+        ? ElevatedButton(
+            onPressed: widget.onPressed != null ? _onPressed(context) : null,
+            style: widget.color != null
+                ? Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                      backgroundColor: MaterialStatePropertyAll(widget.color),
+                    )
+                : null,
+            child: _setUpButtonChild(),
+          )
+        : ElevatedButton.icon(
+            onPressed: widget.onPressed != null ? _onPressed(context) : null,
+            style: widget.color != null
+                ? Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                      backgroundColor: MaterialStatePropertyAll(widget.color),
+                    )
+                : null,
+            icon: widget.icon!,
+            label: _setUpButtonChild(),
+          );
   }
 
   /// return the text label for the button or
@@ -69,9 +82,9 @@ class _DefaultButtonState extends State<DefaultButton> {
     } else {
       style = widget.color == AppColors.white
           ? Theme.of(context)
-          .textTheme
-          .bodyLarge
-          ?.copyWith(color: AppColors.black)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: AppColors.black)
           : null;
     }
     return FittedBox(

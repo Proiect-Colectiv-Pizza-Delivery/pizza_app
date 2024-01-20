@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
-import 'package:pizza_app/features/admin/home/admin_home_page.dart';
-import 'package:pizza_app/features/user/user_root_screen.dart';
+import 'package:pizza_app/features/common/auth/login/bloc/auth_bloc.dart';
 
-import '../../../common/theme/colors.dart';
+import '../../../../common/theme/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoginButtonEnabled = false;
 
   ///Controllers to retrieve the text from the input fields.
-  final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passController = TextEditingController();
 
   @override
@@ -58,11 +58,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 32),
                             child: TextInputField(
-                              labelText: "Email Address",
-                              hintText: "ex: judy@email.com",
-                              keyboardType: TextInputType.emailAddress,
-                              controller: _emailController,
-                              validator: Validator.validateEmail,
+                              labelText: "Username",
+                              hintText: "Judy09",
+                              keyboardType: TextInputType.text,
+                              controller: _usernameController,
+                              validator: Validator.validateUsername,
                             ),
                           ),
                           TextInputField(
@@ -94,13 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: "Login",
                 onPressed: _isLoginButtonEnabled
                     ? () {
-                        if(_emailController.text.contains("admin")) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomePage()));
-                        } else {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const UserRootScreen()));
-                        }
+                        BlocProvider.of<AuthBloc>(context).add(LogIn(
+                            username: _usernameController.text,
+                            password: _passController.text));
                       }
                     : null,
               ),
@@ -143,14 +139,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _validateForm() {
-    return Validator.validateEmail(_emailController.text) == null &&
+    return Validator.validateUsername(_usernameController.text) == null &&
         Validator.validatePass(_passController.text) == null;
   }
 
   @override
   void dispose() {
     _passController.dispose();
-    _emailController.dispose();
+    _usernameController.dispose();
     super.dispose();
   }
 }

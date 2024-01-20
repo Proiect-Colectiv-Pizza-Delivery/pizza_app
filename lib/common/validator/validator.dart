@@ -107,4 +107,16 @@ class Validator {
       return null;
     }
   }
+
+  static String? validateConfirmPass(
+      String? s, String? s1,) {
+    String? message = validatePass(s);
+    if (message != null) {
+      return message;
+    }
+    if (s != s1) {
+      return "Confirmation password do not match.";
+    }
+    return null;
+  }
 }

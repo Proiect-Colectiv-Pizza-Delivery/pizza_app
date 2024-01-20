@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/theme/text_stylers.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
-import 'package:pizza_app/common/widgets/native_dialog.dart';
+import 'package:pizza_app/common/widgets/dialogs.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/data/domain/pizza.dart';
 import 'package:pizza_app/features/user/cart/add_address_sheet.dart';

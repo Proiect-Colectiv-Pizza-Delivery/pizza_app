@@ -28,9 +28,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         firstName: event.firstName,
         lastName: event.lastName,
         email: event.email,
-        username: event.username,
+        password: event.password,
         phoneNumber: event.phoneNumber,
-        profilePicture: event.profilePicture);
+        profilePicture: event.profilePicture,
+        userName: event.username);
 
     await Future.delayed(const Duration(seconds: 1));
 
