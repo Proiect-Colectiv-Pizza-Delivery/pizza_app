@@ -87,7 +87,7 @@ class _PizzaFormState extends State<PizzaForm> {
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: TextInputField(
               controller: _priceController,
-              validator: Validator.validatePositiveInt,
+              validator: Validator.validatePositiveDouble,
               labelText: "Price",
               keyboardType: TextInputType.number,
             ),
@@ -109,25 +109,26 @@ class _PizzaFormState extends State<PizzaForm> {
             ),
           ),
           Expanded(
-            child: state is IngredientLoaded ? ListView.builder(
-              itemCount: state.ingredients.length,
-              itemBuilder: (context, index) => IngredientSelectionCard(
-                ingredient: state.ingredients[index],
-                isSelected:
-                    ingredients.contains(state.ingredients[index]),
-                onSelect: () => setState(
-                  () {
-                    if (ingredients
-                        .contains(state.ingredients[index])) {
-                      ingredients.remove(state.ingredients[index]);
-                    } else {
-                      ingredients.add(state.ingredients[index]);
-                    }
-                    isButtonEnabled = _validateForm();
-                  },
-                ),
-              ),
-            ) : const CircularProgressIndicator(),
+            child: state is IngredientLoaded
+                ? ListView.builder(
+                    itemCount: state.ingredients.length,
+                    itemBuilder: (context, index) => IngredientSelectionCard(
+                      ingredient: state.ingredients[index],
+                      isSelected:
+                          ingredients.contains(state.ingredients[index]),
+                      onSelect: () => setState(
+                        () {
+                          if (ingredients.contains(state.ingredients[index])) {
+                            ingredients.remove(state.ingredients[index]);
+                          } else {
+                            ingredients.add(state.ingredients[index]);
+                          }
+                          isButtonEnabled = _validateForm();
+                        },
+                      ),
+                    ),
+                  )
+                : const CircularProgressIndicator(),
           ),
         ],
       ),
@@ -147,7 +148,7 @@ class _PizzaFormState extends State<PizzaForm> {
 
   bool _validateForm() {
     return Validator.validateEmpty(_nameController.text) == null &&
-        Validator.validatePositiveInt(_priceController.text) == null &&
+        Validator.validatePositiveDouble(_priceController.text) == null &&
         ingredients.isNotEmpty;
   }
 

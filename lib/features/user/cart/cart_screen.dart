@@ -27,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(builder: (context, state) {
       print(state);
-      int totalPrice = 0;
+      double totalPrice = 0;
       state.cartMap.forEach((key, value) => totalPrice += value * key.price);
       if (selectedAddress == null) {
         if (state.address.keys.isNotEmpty) {
@@ -239,7 +239,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Widget _priceSection(int totalPrice) {
+  Widget _priceSection(double totalPrice) {
     return RoundedContainer(
       color: AppColors.white,
       hasAllCornersRounded: true,
@@ -269,7 +269,8 @@ class _CartScreenState extends State<CartScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: GestureDetector(
-        onTap: () => BlocProvider.of<RootPageBloc>(context).add(const ChangePage(0)),
+        onTap: () =>
+            BlocProvider.of<RootPageBloc>(context).add(const ChangePage(0)),
         child: Row(children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),

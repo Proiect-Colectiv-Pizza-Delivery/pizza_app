@@ -15,7 +15,7 @@ class TextStyler {
     );
   }
 
-  static Widget priceSection(BuildContext context, int price) {
+  static Widget priceSection(BuildContext context, double price) {
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Wrap(

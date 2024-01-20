@@ -5,20 +5,19 @@ import 'package:pizza_app/data/domain/ingredient.dart';
 
 class Pizza extends Equatable {
   final int id;
-  final int price;
+  final double price;
   final String name;
   final List<Ingredient> ingredients;
   final bool available;
   final String? imagePath;
 
-  const Pizza({
-    required this.id,
-    required this.price,
-    required this.name,
-    required this.ingredients,
-    required this.available,
-    this.imagePath
-  });
+  const Pizza(
+      {required this.id,
+      required this.price,
+      required this.name,
+      required this.ingredients,
+      required this.available,
+      this.imagePath});
 
   static List<Pizza> getPopulation() {
     final List<Ingredient> ingrs = Ingredient.getPopulation();
@@ -29,16 +28,14 @@ class Pizza extends Equatable {
           name: "Quattro Formaggi",
           ingredients: [ingrs[4], ingrs[6], ...ingrs.sublist(0, 4)],
           available: true,
-          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"
-      ),
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 2,
           price: 32,
           name: "Diavola",
           ingredients: [ingrs[4], ...ingrs.sublist(6, 11)],
           available: true,
-          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"
-      ),
+          imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"),
       Pizza(
           id: 3,
           price: 22,
@@ -128,9 +125,14 @@ class Pizza extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      // PLACEHOLDERS
+      "blatType": "-",
+      "blatQuantity": 1,
+      "baseName": "-",
+      "baseQuantity": 1,
+      // END PLACEHOLDERS
       'name': name,
-      'ingredients': ingredients,
-      'available': available,
+      'allergens': "tomato",
       'price': price
     };
   }
@@ -139,8 +141,11 @@ class Pizza extends Equatable {
     return Pizza(
       id: map['id'],
       name: map['name'].toString(),
-      ingredients: map['ingredients'],
-      available: map['available'],
+      ingredients: (map['ingredients'] as List)
+          .map((ingr) => Ingredient.fromMap(ingr['ingredient']))
+          .toList(),
+      available: true,
+      // map['available'],
       price: map['price'],
     );
   }
@@ -151,7 +156,7 @@ class Pizza extends Equatable {
 
   Pizza copyWith({
     int? id,
-    int? price,
+    double? price,
     String? name,
     List<Ingredient>? ingredients,
     bool? available,
