@@ -5,7 +5,7 @@ abstract class AuthState extends Equatable {
 }
 
 class Authenticated extends AuthState {
-  final GoogleSignInAccount account;
+  final User account;
 
   const Authenticated(this.account);
 

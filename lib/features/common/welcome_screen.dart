@@ -1,11 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pizza_app/common/theme/colors.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
-import 'package:pizza_app/features/common/auth/bloc/auth_bloc.dart';
-import 'package:pizza_app/features/common/auth/login_screen.dart';
+import 'package:pizza_app/features/common/auth/login/login_screen.dart';
+import 'package:pizza_app/features/common/auth/register/registration_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -24,7 +23,10 @@ class WelcomeScreen extends StatelessWidget {
               ),
               child: Image.asset("assets/logo3.png"),
             ),
-            Padding(padding: const EdgeInsets.all(32), child: _googleButton(context))
+            Padding(
+                padding: const EdgeInsets.all(32).copyWith(bottom: 0),
+                child: _googleButton(context)),
+            _normalButtonSection(context),
           ],
         ),
       ),
@@ -32,11 +34,14 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget _googleButton(BuildContext context) {
-    return DefaultButton(
+    return const DefaultButton(
       color: AppColors.white,
       text: "Sign Up with Google",
-      icon: const FaIcon(FontAwesomeIcons.google, color: AppColors.primary,),
-      onPressed: () => BlocProvider.of<AuthBloc>(context).add(LogIn()),
+      icon: FaIcon(
+        FontAwesomeIcons.google,
+        color: AppColors.primary,
+      ),
+      // onPressed: () => BlocProvider.of<AuthBloc>(context).add(LogIn()),
     );
   }
 
@@ -51,7 +56,11 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: DefaultButton(
                 text: "Register New Account",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const RegistrationScreen(),
+                  ));
+                },
               ),
             ),
             RichText(

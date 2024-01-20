@@ -5,11 +5,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app/common/validator/validator.dart';
 import 'package:pizza_app/common/widgets/default_button.dart';
-import 'package:pizza_app/common/widgets/native_dialog.dart';
+import 'package:pizza_app/common/widgets/dialogs.dart';
 import 'package:pizza_app/common/widgets/rounded_container.dart';
 import 'package:pizza_app/common/widgets/text_input_field.dart';
 import 'package:pizza_app/data/domain/user.dart';
-import 'package:pizza_app/features/common/auth/bloc/auth_bloc.dart';
+import 'package:pizza_app/features/common/auth/login/bloc/auth_bloc.dart';
 import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  "Signed in as: ${state.user.username}",
+                  "Signed in as: ${state.user.firstName} ${state.user.lastName}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
@@ -186,9 +186,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         firstName: _firstNameController.text,
         lastName: _lastNameController.text,
         email: _emailController.text,
-        username: state.user.username,
+        password: "",
         phoneNumber: state.user.phoneNumber,
-        profilePicture: _profilePicture));
+        profilePicture: _profilePicture, username: state.user.userName));
     setState(() {
       mustListen = true;
     });

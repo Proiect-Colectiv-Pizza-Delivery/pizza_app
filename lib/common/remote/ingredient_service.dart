@@ -6,7 +6,7 @@ import 'api_service.dart';
 
 class IngredientService extends ApiService {
   final String ingredientsUrl = "/ingredients";
-  IngredientService(super.dio);
+  IngredientService(super.dio, super._authInterceptor);
 
   Future<Ingredient> addIngredient(Ingredient ingredient) async {
     final response = await dio.post(ingredientsUrl, data: ingredient.toMap());

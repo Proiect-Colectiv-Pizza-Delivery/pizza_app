@@ -8,7 +8,7 @@ import 'api_service.dart';
 class PizzaService extends ApiService {
   final String pizzaUrl = "/pizzas";
   final String ingredientsSuburl = "/ingredients";
-  PizzaService(super.dio);
+  PizzaService(super.dio, super._authInterceptor);
 
   Future<Pizza> addPizza(Pizza pizza) async {
     Map<String, dynamic> code = pizza.toMap();
