@@ -26,7 +26,6 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(builder: (context, state) {
-      print(state);
       double totalPrice = 0;
       state.cartMap.forEach((key, value) => totalPrice += value * key.price);
       if (selectedAddress == null) {

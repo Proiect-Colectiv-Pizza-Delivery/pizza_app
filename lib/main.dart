@@ -1,6 +1,7 @@
 import 'package:pizza_app/common/theme/theme_builder.dart';
 import 'package:pizza_app/data/domain/user.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository_impl.dart';
 import 'package:pizza_app/data/repository/ingredients/ingredient_repository_online.dart';
 import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
 import 'package:pizza_app/data/repository/orders/order_repository.dart';
@@ -25,9 +26,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool admin = false;
-  final PizzaRepository _pizzaRepository = PizzaRepositoryOnline();
-  final IngredientRepository _ingredientRepository =
-      IngredientRepositoryOnline();
+  // TODO: change back to online pizza
+  final PizzaRepository _pizzaRepository = PizzaRepositoryImpl();
+  final IngredientRepository _ingredientRepository = IngredientRepositoryImpl();
   final User _user = const User(
       firstName: "Mihai",
       lastName: "Gheorghe",

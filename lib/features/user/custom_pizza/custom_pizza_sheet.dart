@@ -135,7 +135,7 @@ class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
         .firstWhere((element) => element.name == "Basic pizza base");
     widgetList.add(ingredientTile(baseIngredient, isFixed: true));
     for (Ingredient ingredient in ingredientList) {
-      if(!ingredient.name.contains("base")) {
+      if (!ingredient.name.contains("base")) {
         widgetList.add(ingredientTile(ingredient));
       }
     }
@@ -146,13 +146,15 @@ class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
     return ListTile(
       title: Text(ingredient.name),
       subtitle: Text(ingredient.allergensString()),
-      trailing: isFixed ? SvgPicture.asset("assets/checked_radio_box_gray.svg") : ingredients.contains(ingredient)
-          ? SvgPicture.asset("assets/checked_radio_box.svg")
-          : SvgPicture.asset("assets/empty_radio_box.svg"),
+      trailing: isFixed
+          ? SvgPicture.asset("assets/checked_radio_box_gray.svg")
+          : ingredients.contains(ingredient)
+              ? SvgPicture.asset("assets/checked_radio_box.svg")
+              : SvgPicture.asset("assets/empty_radio_box.svg"),
       onTap: () {
-        if(!isFixed) {
+        if (!isFixed) {
           setState(
-                () {
+            () {
               if (ingredients.contains(ingredient)) {
                 ingredients.remove(ingredient);
               } else {

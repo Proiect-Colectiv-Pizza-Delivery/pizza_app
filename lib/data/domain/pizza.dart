@@ -156,7 +156,7 @@ class Pizza extends Equatable {
 
   Pizza copyWith({
     int? id,
-    int? price,
+    double? price,
     String? name,
     List<Ingredient>? ingredients,
     bool? available,
