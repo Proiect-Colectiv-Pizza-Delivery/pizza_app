@@ -31,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         firstName: event.firstName,
         lastName: event.lastName,
         email: event.email,
-        username: event.username,
+        userName: event.username,
         phoneNumber: event.phoneNumber,
         profilePicture: event.profilePicture);
 

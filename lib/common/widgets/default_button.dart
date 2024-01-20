@@ -7,6 +7,7 @@ class DefaultButton extends StatefulWidget {
   final bool isLoading;
   final Color? color;
   final TextStyle? textStyle;
+  final Widget? icon;
 
   const DefaultButton({
     Key? key,
@@ -15,6 +16,7 @@ class DefaultButton extends StatefulWidget {
     this.isLoading = false,
     this.color,
     this.textStyle,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,8 @@ class _DefaultButtonState extends State<DefaultButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return widget.icon == null
+        ? ElevatedButton(
       onPressed: widget.onPressed != null ? _onPressed(context) : null,
       style: widget.color != null
           ? Theme.of(context).elevatedButtonTheme.style?.copyWith(
@@ -48,6 +51,16 @@ class _DefaultButtonState extends State<DefaultButton> {
       )
           : null,
       child: _setUpButtonChild(),
+    )
+        : ElevatedButton.icon(
+      onPressed: widget.onPressed != null ? _onPressed(context) : null,
+      style: widget.color != null
+          ? Theme.of(context).elevatedButtonTheme.style?.copyWith(
+        backgroundColor: MaterialStatePropertyAll(widget.color),
+      )
+          : null,
+      icon: widget.icon!,
+      label: _setUpButtonChild(),
     );
   }
 

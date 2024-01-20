@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  "Signed in as: ${state.user.username}",
+                  "Signed in as: ${state.user.userName}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
@@ -181,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         firstName: _firstNameController.text,
         lastName: _lastNameController.text,
         email: _emailController.text,
-        username: state.user.username,
+        username: state.user.userName,
         phoneNumber: state.user.phoneNumber,
         profilePicture: _profilePicture));
     setState(() {

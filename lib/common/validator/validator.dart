@@ -35,6 +35,22 @@ class Validator {
     return null;
   }
 
+  static String? validatePositiveDouble(String? s) {
+    if (s == null || s.isEmpty) {
+      return "* Required";
+    }
+    try {
+      double res = double.parse(s);
+      if (res < 0) {
+        return "Number must be greater than 0";
+      }
+    } catch (e) {
+      return "Must be an number";
+    }
+
+    return null;
+  }
+
   static String? validateEmail(String? s) {
     if (s == null || s.isEmpty) {
       return "* Required";
@@ -90,5 +106,17 @@ class Validator {
     } else {
       return null;
     }
+  }
+
+  static String? validateConfirmPass(
+      String? s, String? s1,) {
+    String? message = validatePass(s);
+    if (message != null) {
+      return message;
+    }
+    if (s != s1) {
+      return "Confirmation password do not match.";
+    }
+    return null;
   }
 }
