@@ -28,8 +28,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
   FutureOr<void> _onSendAuthInformation(SendAuthInformation event, Emitter<AuthState> emit) {
-    // if(state is Authenticated){
-    //   authRepository.sendAccountInfo((state as Authenticated).account);
-    // }
+    authRepository.sendAccountInfo();
   }
 }

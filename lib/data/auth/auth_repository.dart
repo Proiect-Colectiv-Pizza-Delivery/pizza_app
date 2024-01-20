@@ -15,8 +15,13 @@ class AuthRepository {
 
   Future<User?> login(String username, String password) => _authService.logIn(username, password);
 
-  void sendAccountInfo(GoogleSignInAccount account){
-    // if(_googleSignIn.currentUser != null) _authService.sendAccountInformation(_googleSignIn.currentUser!);
+  void sendAccountInfo() async{
+    if(_googleSignIn.currentUser != null){
+      _authService.sendAccountInformation(_googleSignIn.currentUser!);
+    } else {
+      await loginGoogle();
+      _authService.sendAccountInformation(_googleSignIn.currentUser!);
+    }
   }
 
   Future<void> registerUser(User user){
