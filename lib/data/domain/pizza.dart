@@ -146,7 +146,7 @@ class Pizza extends Equatable {
           .toList(),
       available: true,
       // map['available'],
-      price: map['price'],
+      price: map['price'], imagePath: "assets/pizza${Random().nextInt(5) + 1}.jpg"
     );
   }
 

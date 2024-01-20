@@ -69,6 +69,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         totalPrice: event.totalPrice,
         date: DateTime.now(),
         isPickUp: event.isPickup));
+    await Future.delayed(const Duration(seconds: 1));
     emit(CartLoaded(const {}, state.address));
   }
 }

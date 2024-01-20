@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       lastName: "Gheorghe",
       email: "mihai02ghe@gmail.com",
       password: "test",
-      phoneNumber: "+40758978965");
+      phoneNumber: "+40747112427");
   final OrderRepository _orderRepository = OrderRepositoryImpl();
   final AuthRepository _authRepository =
       AuthRepository(SecureLocalStorage(), AuthService());
@@ -60,40 +60,36 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => AuthBloc(_authRepository)),
-          BlocProvider(create: (_) => RegistrationBloc(_authRepository))
+          BlocProvider(create: (_) => RegistrationBloc(_authRepository)),
+          BlocProvider(
+              create: (_) => PizzaBloc(_pizzaRepository)),
+          BlocProvider(
+              create: (_) => IngredientBloc(_ingredientRepository)),
+          BlocProvider(
+              create: (_) => UserBloc(_user)),
+          BlocProvider(create: (_) => CartBloc(_orderRepository)),
+          BlocProvider(create: (_) => RootPageBloc()),
+          BlocProvider(
+              create: (_) => HistoryBloc(_orderRepository)),
         ],
         child: MaterialApp(
           title: 'Slice2You',
           theme: ThemeBuilder.getThemeData(),
           home: BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
-
             if (state is Authenticated) {
-              return MultiBlocProvider(
-                  providers: [
-                    BlocProvider(
-                        create: (_) => PizzaBloc(_pizzaRepository)
-                          ..add(const FetchPizzas())),
-                    BlocProvider(
-                        create: (_) => IngredientBloc(_ingredientRepository)
-                          ..add(const FetchIngredients())),
-                    BlocProvider(
-                        create: (_) => UserBloc(_user)..add(const FetchUser())),
-                    BlocProvider(create: (_) => CartBloc(_orderRepository)),
-                    BlocProvider(create: (_) => RootPageBloc()),
-                    BlocProvider(
-                        create: (_) => HistoryBloc(_orderRepository)
-                          ..add(const FetchHistory())),
-                  ],
-                  child: state.account.role == UserRole.admin
+              return state.account.role == UserRole.admin
                       ? const HomePage()
-                      : const UserRootScreen());
+                      : const UserRootScreen();
             } else {
               return const WelcomeScreen();
             }
           },
             listener: (BuildContext context, AuthState state) {
-            if(state is Authenticated){
               Navigator.popUntil(context, (route) => route.isFirst);
+            if(state is Authenticated){
+              BlocProvider.of<PizzaBloc>(context).add(const FetchPizzas());
+              BlocProvider.of<HistoryBloc>(context).add(const FetchHistory());
+              BlocProvider.of<IngredientBloc>(context).add(const FetchIngredients());
             }
           },),
         ),

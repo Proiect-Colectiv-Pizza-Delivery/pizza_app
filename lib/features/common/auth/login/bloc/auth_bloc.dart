@@ -14,6 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this.authRepository) : super(Unauthenticated()) {
     on<LogIn>(_onLogIn);
     on<SendAuthInformation>(_onSendAuthInformation);
+    on<SignOut>(_onSignOut);
   }
 
   FutureOr<void> _onLogIn(LogIn event, Emitter<AuthState> emit) async {
@@ -29,5 +30,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> _onSendAuthInformation(SendAuthInformation event, Emitter<AuthState> emit) {
     authRepository.sendAccountInfo();
+  }
+
+  FutureOr<void> _onSignOut(SignOut event, Emitter<AuthState> emit) async {
+    await authRepository.signOut();
+    emit(Unauthenticated());
   }
 }

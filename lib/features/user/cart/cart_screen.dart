@@ -22,10 +22,25 @@ class _CartScreenState extends State<CartScreen> {
   int pickupMethod = 0;
   int tips = 0;
   String? selectedAddress;
+  bool mustListen = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+    return BlocConsumer<CartBloc, CartState>(
+      listener: (context, state){
+        if(mustListen && state is CartLoaded){
+          NativeDialog(
+              title: "Order Confirmed",
+              content:
+              "Thanks for choosing Slice2You! Our chefs are already preparing your delicious pizzas! ",
+              firstButtonText: "Ok")
+              .showOSDialog(context);
+          setState(() {
+            mustListen = false;
+          });
+        }
+      },
+        builder: (context, state) {
       double totalPrice = 0;
       state.cartMap.forEach((key, value) => totalPrice += value * key.price);
       if (selectedAddress == null) {
@@ -60,6 +75,7 @@ class _CartScreenState extends State<CartScreen> {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: DefaultButton(
+                  isLoading: mustListen,
                   onPressed: state.cartMap.isNotEmpty &&
                           (selectedAddress != null || pickupMethod == 1)
                       ? () {
@@ -74,12 +90,9 @@ class _CartScreenState extends State<CartScreen> {
                               isPickup: pickupMethod == 1,
                             ),
                           );
-                          NativeDialog(
-                                  title: "Order Confirmed",
-                                  content:
-                                      "Thanks for choosing Slice2You! Our chefs are already preparing your delicious pizzas! ",
-                                  firstButtonText: "Ok")
-                              .showOSDialog(context);
+                          setState(() {
+                            mustListen = true;
+                          });
                         }
                       : null,
                   text: "Confirm Order",

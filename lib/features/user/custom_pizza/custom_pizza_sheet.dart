@@ -17,7 +17,7 @@ class CustomPizzaSheet extends StatefulWidget {
 
   static void showAsModalBottomSheet(BuildContext context) {
     DraggableScrollableController draggableScrollableController =
-        DraggableScrollableController();
+    DraggableScrollableController();
     showModalBottomSheet(
       backgroundColor: AppColors.transparent,
       useSafeArea: true,
@@ -41,16 +41,14 @@ class CustomPizzaSheet extends StatefulWidget {
 }
 
 class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
-  Pizza? pizza;
-  bool initialized = false;
+  late Pizza pizza;
   List<Ingredient> ingredients = [];
 
-  void initializePizza() {
+  @override
+  void initState() {
     List<Pizza> cartContent =
-        BlocProvider.of<CartBloc>(context).state.cartMap.keys.toList();
-
+    BlocProvider.of<CartBloc>(context).state.cartMap.keys.toList();
     int customPizzaCount = 0;
-
     for (Pizza pizza in cartContent) {
       if (pizza.name.contains("Custom")) {
         customPizzaCount++;
@@ -61,54 +59,31 @@ class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
         id: -1,
         price: 30,
         name:
-            "Custom Pizza${customPizzaCount > 0 ? " #$customPizzaCount" : ""}",
+        "Custom Pizza${customPizzaCount > 0 ? " #$customPizzaCount" : ""}",
         ingredients: const [],
         imagePath: "assets/full_pizza_icon.png",
         available: true);
 
-    ingredients.add(
-      BlocProvider.of<IngredientBloc>(context)
-          .state
-          .ingredients
-          .firstWhere((element) => element.name == "Basic pizza base"),
-    );
+    BlocProvider.of<IngredientBloc>(context).add(const FetchIngredients());
 
-    setState(() {
-      initialized = true;
-    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<IngredientBloc, IngredientState>(
-        listener: (context, state) {
-      if (state is IngredientLoaded) {
-        initializePizza();
-      }
-    }, builder: (context, state) {
-      Widget ingredientsColumn = const Center(
-        child: CircularProgressIndicator(),
-      );
-      Widget addSection = Container();
-      if (initialized) {
-        ingredientsColumn = Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              pizza?.name ?? "Custom Pizza",
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            TextStyler.priceSection(context, 30),
-            ...buildIngredientsTiles(state.ingredients)
-          ],
-        );
-        addSection =
-            AddSection(pizza: pizza!.copyWith(ingredients: ingredients));
-      }
-
-      return RoundedContainer(
+      listener: (context, state) {
+        if (state is IngredientLoaded) {
+          ingredients.clear();
+          ingredients.add(
+            BlocProvider.of<IngredientBloc>(context)
+                .state
+                .ingredients
+                .firstWhere((element) => element.name == "Basic pizza base"),
+          );
+        }
+      },
+      builder: (context, state) => RoundedContainer(
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -130,21 +105,35 @@ class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
                       ),
                     ),
                   ),
+                  state is IngredientLoaded ?
                   Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
-                      child: ingredientsColumn),
-                  const SizedBox(
-                    height: 100,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          pizza.name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                          textAlign: TextAlign.center,
+                        ),
+                        TextStyler.priceSection(context, 30),
+                        ...buildIngredientsTiles(state.ingredients),
+                      ],
+                    ),
+                  ) : const CircularProgressIndicator(),
+                  SizedBox(
+                    height: state is IngredientLoaded ? 100 : 500,
                   ),
                 ],
               ),
             ),
-            addSection
+            AddSection(pizza: pizza.copyWith(ingredients: ingredients))
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 
   List<Widget> buildIngredientsTiles(List<Ingredient> ingredientList) {
@@ -167,12 +156,12 @@ class _CustomPizzaSheetState extends State<CustomPizzaSheet> {
       trailing: isFixed
           ? SvgPicture.asset("assets/checked_radio_box_gray.svg")
           : ingredients.contains(ingredient)
-              ? SvgPicture.asset("assets/checked_radio_box.svg")
-              : SvgPicture.asset("assets/empty_radio_box.svg"),
+          ? SvgPicture.asset("assets/checked_radio_box.svg")
+          : SvgPicture.asset("assets/empty_radio_box.svg"),
       onTap: () {
         if (!isFixed) {
           setState(
-            () {
+                () {
               if (ingredients.contains(ingredient)) {
                 ingredients.remove(ingredient);
               } else {

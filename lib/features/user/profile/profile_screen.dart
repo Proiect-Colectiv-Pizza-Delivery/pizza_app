@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  "Signed in as: ${state.user.firstName} ${state.user.lastName}",
+                  "Signed in as: ${state.user.userName}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
@@ -73,9 +73,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   isLoading: state is UserLoading,
                 ),
               ),DefaultButton(
-                    text: "Send Account Information",
+                    text: "Sign Out",
                     onPressed: () => BlocProvider.of<AuthBloc>(context)
-                        .add(SendAuthInformation())),
+                        .add(SignOut())),
             ]),
           ),
         ),

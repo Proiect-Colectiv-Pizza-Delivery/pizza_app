@@ -47,6 +47,7 @@ class AuthService{
       "$authUrl/refreshtoken",
     );
 
+    SecureLocalStorage().writeData(PrefsConstants.secureKeyIdToken, response.data["accessToken"]);
     return response.data["accessToken"];
   }
 
