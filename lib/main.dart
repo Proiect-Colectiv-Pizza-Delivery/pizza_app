@@ -1,125 +1,100 @@
+import 'package:dio/dio.dart';
+import 'package:pizza_app/common/remote/auth_service.dart';
+import 'package:pizza_app/common/remote/ingredient_service.dart';
+import 'package:pizza_app/common/remote/interceptors/auth_interceptor.dart';
+import 'package:pizza_app/common/remote/pizza_service.dart';
+import 'package:pizza_app/common/theme/theme_builder.dart';
+import 'package:pizza_app/data/auth/auth_repository.dart';
+import 'package:pizza_app/data/domain/user.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository.dart';
+import 'package:pizza_app/data/repository/ingredients/ingredient_repository_online.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository.dart';
+import 'package:pizza_app/data/repository/orders/order_repository.dart';
+import 'package:pizza_app/data/repository/orders/order_repository_impl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app/data/repository/secure_local_storage/secure_local_storage.dart';
+import 'package:pizza_app/data/repository/pizza/pizza_repository_online.dart';
+import 'package:pizza_app/features/admin/home/admin_home_page.dart';
+import 'package:pizza_app/features/admin/management/ingredient/ingredient_bloc/ingredient_bloc.dart';
+import 'package:pizza_app/features/admin/management/pizza/pizza_bloc/pizza_bloc.dart';
+import 'package:pizza_app/features/common/auth/login/bloc/auth_bloc.dart';
+import 'package:pizza_app/features/common/auth/register/bloc/registration_bloc.dart';
+import 'package:pizza_app/features/user/profile/user_bloc.dart/user_bloc.dart';
+import 'package:pizza_app/features/user/cart/bloc/cart_bloc.dart';
+import 'package:pizza_app/features/user/order_history/bloc/history_bloc.dart';
+import 'package:pizza_app/features/user/page_bloc/root_page_bloc.dart';
+import 'package:pizza_app/features/common/welcome_screen.dart';
+import 'package:pizza_app/features/user/user_root_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  static bool admin = false;
+  final Dio _dio = Dio();
+  late final AuthInterceptor authInterceptor = AuthInterceptor(_dio, SecureLocalStorage(), AuthService(), () { });
+  late final PizzaRepository _pizzaRepository = PizzaRepositoryOnline(PizzaService(_dio, authInterceptor));
+  late final IngredientRepository _ingredientRepository =
+      IngredientRepositoryOnline(IngredientService(_dio, authInterceptor));
+  final User _user = const User(
+      userName: "mihaig09",
+      firstName: "Mihai",
+      lastName: "Gheorghe",
+      email: "mihai02ghe@gmail.com",
+      password: "test",
+      phoneNumber: "+40747112427");
+  final OrderRepository _orderRepository = OrderRepositoryImpl();
+  final AuthRepository _authRepository =
+      AuthRepository(SecureLocalStorage(), AuthService());
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return RepositoryProvider(
+      create: (_) => _pizzaRepository,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AuthBloc(_authRepository)),
+          BlocProvider(create: (_) => RegistrationBloc(_authRepository)),
+          BlocProvider(
+              create: (_) => PizzaBloc(_pizzaRepository)),
+          BlocProvider(
+              create: (_) => IngredientBloc(_ingredientRepository)),
+          BlocProvider(
+              create: (_) => UserBloc(_user)),
+          BlocProvider(create: (_) => CartBloc(_orderRepository)),
+          BlocProvider(create: (_) => RootPageBloc()),
+          BlocProvider(
+              create: (_) => HistoryBloc(_orderRepository)),
+        ],
+        child: MaterialApp(
+          title: 'Slice2You',
+          theme: ThemeBuilder.getThemeData(),
+          home: BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
+            if (state is Authenticated) {
+              return state.account.role == UserRole.admin
+                      ? const HomePage()
+                      : const UserRootScreen();
+            } else {
+              return const WelcomeScreen();
+            }
+          },
+            listener: (BuildContext context, AuthState state) {
+              Navigator.popUntil(context, (route) => route.isFirst);
+            if(state is Authenticated){
+              BlocProvider.of<PizzaBloc>(context).add(const FetchPizzas());
+              BlocProvider.of<HistoryBloc>(context).add(const FetchHistory());
+              BlocProvider.of<IngredientBloc>(context).add(const FetchIngredients());
+              BlocProvider.of<UserBloc>(context).add(FetchUser(state.account));
+            }
+          },),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
